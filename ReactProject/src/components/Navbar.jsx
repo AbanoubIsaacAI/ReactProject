@@ -2,7 +2,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 
 const navbar = {
-  height: "300px",
+  height: "100px",
   width: "100%",
   display: "flex",
   justifyContent: "space-around",
@@ -12,10 +12,13 @@ const navbar = {
 
 function Navbar() {
   return (
-    <nav style={navbar}>
-      <Logo />
-      <Search />
-    </nav>
+    <>
+      <nav style={navbar}>
+        <Logo />
+        <Search />
+      </nav>
+      <div className="bg-red-500">Try tailwind</div>
+    </>
   );
 }
 
