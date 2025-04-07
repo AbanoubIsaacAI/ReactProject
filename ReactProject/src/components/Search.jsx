@@ -1,7 +1,11 @@
 function Search() {
   return (
     <div>
-      <input className="search" type="text" placeholder="Search Products..." />
+      <input
+        type="text"
+        placeholder="Search products"
+        className="input input-bordered w-24 md:w-auto"
+      />{" "}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 // import Logo from "./Logo";
-// import Search from "./Search";
+
+import Search from "./Search";
 
 // const navbar = {
 //   height: "100px",
@@ -22,7 +23,9 @@ function Navbar() {
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">E-Shop</a>
         </div>
-        <div className="flex-none">
+
+        <div className="flex">
+          <Search></Search>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
