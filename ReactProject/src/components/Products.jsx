@@ -269,9 +269,8 @@ const products = [
   },
 ];
 
-function Products() {
+function Products({ cart, AddToCart }) {
   const [seeMore, setSeeMore] = useState({});
-  const [cart, AddToCart] = useState([]);
   console.log(cart);
   function handleSeeMore(id) {
     setSeeMore((prev) => ({
@@ -288,10 +287,10 @@ function Products() {
     );
   }
   return (
-    <div className="flex flex-wrap justify-around gap-10 mt-20 mb-20">
+    <div className="flex flex-wrap justify-around gap-10 mt-20 mb-20 ">
       {products.map((product) => {
         return (
-          <div key={product.id}>
+          <div key={product.id} className="overflow-hidden">
             <div className="card bg-base-100 w-60 shadow-sm">
               <figure>
                 <img src={product.image} alt={product.title} className="h-60" />
