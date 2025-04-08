@@ -1,8 +1,3 @@
-// import { useState } from "react";
-
-import Logo from "./components/Logo";
-import Navbar from "./components/Navbar";
-import Search from "./components/Search";
 import Home from "./Pages/Home";
 import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
