@@ -1,16 +1,26 @@
 import { useState } from "react";
 
-function SideFilter() {
+function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10000);
 
+  function handlePrice() {
+    setProducts(
+      allProducts.filter(
+        (product) => product.price >= minValue && product.price <= maxValue
+      )
+    );
+  }
+
   const handleMinChange = (val) => {
     const value = Number(val);
+    handlePrice();
     if (value <= maxValue) setMinValue(value);
   };
 
   const handleMaxChange = (val) => {
     const value = Number(val);
+    handlePrice();
     if (value >= minValue) setMaxValue(value);
   };
 
