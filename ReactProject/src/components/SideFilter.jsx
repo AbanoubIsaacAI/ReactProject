@@ -11,7 +11,56 @@ function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
       )
     );
   }
-
+  function handleElectronics() {
+    setProducts(allProducts.filter((products) => products.category === "TV"));
+  }
+  function handleLaptops() {
+    setProducts(
+      allProducts.filter(
+        (products) =>
+          products.category === "Laptops" ||
+          products.category === "Computers" ||
+          products.category === "MacBooks"
+      )
+    );
+  }
+  function handleComputerAccessories() {
+    setProducts(
+      allProducts.filter(
+        (products) => products.category === "Gaming Accessories"
+      )
+    );
+  }
+  function handleSmartphones() {
+    setProducts(
+      allProducts.filter((products) => products.category === "Smartphones")
+    );
+  }
+  function handleHeadphones() {
+    setProducts(
+      allProducts.filter((products) => products.category === "Headphones")
+    );
+  }
+  function handleHardsAndCarts() {
+    setProducts(
+      allProducts.filter(
+        (products) => products.category === "SSD Hards and Graphic Cards"
+      )
+    );
+  }
+  function handlePowerbanks() {
+    setProducts(
+      allProducts.filter((products) => products.category === "Power Banks")
+    );
+  }
+  function handleCameras() {
+    setProducts(
+      allProducts.filter((products) => products.category === "Cameras")
+    );
+  }
+  function handleResetFilter() {
+    setProducts(allProducts);
+  }
   const handleMinChange = (val) => {
     const value = Number(val);
     handlePrice();
@@ -26,36 +75,79 @@ function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
 
   return (
     <div className="flex flex-col w-[300px] border-r border-gray-300 text-left pt-10 pl-10 pr-4">
-      {/* Category Filter */}
       <div className="mb-10">
         <h4 className="text-lg font-semibold mb-2">Category</h4>
         <div className="space-y-2">
-          {[
-            "Electronic Devices",
-            "Computer & Laptop",
-            "Computer Accessories",
-            "Smartphone",
-            "Headphone",
-          ].map((category) => (
-            <div key={category}>
-              <input
-                type="radio"
-                id={category}
-                name="Category filter"
-                value={category}
-                className="mr-2"
-              />
-              <label htmlFor={category}>{category}</label>
-            </div>
-          ))}
+          <form className="filter flex flex-col">
+            <input
+              className="btn btn-square"
+              type="reset"
+              value="×"
+              onClick={handleResetFilter}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Electronic Devices"
+              onChange={handleElectronics}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Computer & Laptop"
+              onChange={handleLaptops}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Computer Accessories"
+              onChange={handleComputerAccessories}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Smartphone"
+              onChange={handleSmartphones}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Headphone"
+              onChange={handleHeadphones}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="SSD Hards and Graphic Cards"
+              onChange={handleHardsAndCarts}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Powerbanks"
+              onChange={handlePowerbanks}
+            />
+            <input
+              className="btn"
+              type="radio"
+              name="frameworks"
+              aria-label="Cameras"
+              onChange={handleCameras}
+            />
+          </form>
         </div>
       </div>
 
-      {/* Price Range Filter */}
       <div>
         <h4 className="text-lg font-semibold mb-4">Price Range</h4>
         <div className="space-y-4">
-          {/* Range sliders */}
           <input
             type="range"
             min={0}
