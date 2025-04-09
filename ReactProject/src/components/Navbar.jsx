@@ -1,6 +1,10 @@
 import Search from "./Search";
 
-function Navbar({ cart, AddToCart }) {
+function Navbar({ cart, setCart }) {
+  function handleRemoveFromCart(id) {
+    setCart((cart) => cart.filter((product) => product.id !== id));
+  }
+
   return (
     <>
       <div className="navbar shadow-sm sticky top-0 z-50 bg-[#1B6392]">
@@ -39,22 +43,50 @@ function Navbar({ cart, AddToCart }) {
             </div>
             <div
               tabIndex={0}
-              className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+              className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-100 shadow"
             >
-              <div className="card-body">
-                <span className="text-lg font-bold">
-                  {cart.length > 1
-                    ? `${cart.length} Items`
-                    : `${cart.length} Item`}
+              <div className="card-body h-96 overflow-y-auto">
+                <span className="text-lg font-bold text-center">
+                  {cart.length === 0 && <span>Cart is empty</span>}
+                  {cart.length === 1 && `${cart.length} Item`}
+                  {cart.length > 1 && `${cart.length} Item`}
                 </span>
-                <span className="text-info">
+                {cart.map((product) => (
+                  <div className="flex justify-between gap-3" key={product.id}>
+                    <img src={product.image} alt="" className="h-26" />
+                    <div className="flex flex-col justify-between basis-90 pb-1">
+                      <div>
+                        <h6>{product.title}</h6>
+                      </div>
+                      <div>
+                        {" "}
+                        <p className="text-orange-400">
+                          Price: {product.price}$
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        className="cursor-pointer"
+                        onClick={() => handleRemoveFromCart(product.id)}
+                      >
+                        ❌
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                <span className="text-info text-center">
                   Total:
-                  {cart.reduce((a, e) => a + e.price, 0)}$
+                  {cart.reduce((a, p) => a + p.price, 0)}$
                 </span>
                 <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
+                  {cart.length > 0 ? (
+                    <button className="btn btn-primary btn-block">
+                      View cart
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
@@ -81,6 +113,9 @@ function Navbar({ cart, AddToCart }) {
                   Profile
                   <span className="badge">New</span>
                 </a>
+              </li>
+              <li>
+                <a>Dashboard</a>
               </li>
               <li>
                 <a>Settings</a>

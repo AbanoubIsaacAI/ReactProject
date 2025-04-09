@@ -4,13 +4,13 @@ import Products from "../components/Products";
 import Slider from "../components/Slider";
 import { useState } from "react";
 function Home() {
-  const [cart, AddToCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
   return (
     <>
-      <Navbar cart={cart} AddToCart={AddToCart}></Navbar>
+      <Navbar cart={cart} setCart={setCart}></Navbar>
       <Slider></Slider>
-      <Products cart={cart} AddToCart={AddToCart}></Products>
+      <Products cart={cart} setCart={setCart}></Products>
       <Footer></Footer>
     </>
   );

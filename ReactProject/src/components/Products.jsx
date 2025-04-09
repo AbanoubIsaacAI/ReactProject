@@ -269,7 +269,7 @@ const products = [
   },
 ];
 
-function Products({ cart, AddToCart }) {
+function Products({ cart, setCart }) {
   const [seeMore, setSeeMore] = useState({});
   console.log(cart);
   function handleSeeMore(id) {
@@ -280,7 +280,7 @@ function Products({ cart, AddToCart }) {
   }
   function handleBuy(id) {
     const productToAdd = products.find((product) => product.id === id);
-    AddToCart((prevCart) =>
+    setCart((prevCart) =>
       prevCart.some((item) => item.id === id)
         ? prevCart
         : [...prevCart, productToAdd]
