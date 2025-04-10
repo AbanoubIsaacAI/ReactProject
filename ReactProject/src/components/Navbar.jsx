@@ -1,15 +1,67 @@
+import { Link } from "react-router";
 import Search from "./Search";
+import { useState } from "react";
+import productsList from "../../../product";
 
 function Navbar({ cart, setCart }) {
+  const [finalprice, setFinalPrice] = useState(0);
+  const [productCounter, setProductCounter] = useState(0);
+  const [isMaxCount, setIsMaxCount] = useState(false);
+  const [allProducts] = useState(productsList);
+  const [products, setProducts] = useState([]);
   function handleRemoveFromCart(id) {
     setCart((cart) => cart.filter((product) => product.id !== id));
+  }
+  function handleIncProductCount(id) {
+    const updatedCart = cart.map((product) => {
+      if (product.id === id) {
+        if (product.counter < product.quantity) {
+          const newCounter = product.counter + 1;
+          return {
+            ...product,
+            counter: newCounter,
+            isMaxCount: false,
+            finalPrice: product.offerPrice
+              ? product.offerPrice * newCounter
+              : product.price * newCounter,
+          };
+        } else {
+          return { ...product, isMaxCount: true };
+        }
+      }
+      return product;
+    });
+    setCart(updatedCart);
+  }
+
+  function handleDecProductCount(id) {
+    setCart((prevCart) =>
+      prevCart.map((product) => {
+        if (product.id === id) {
+          if (product.counter > 1) {
+            const newCounter = product.counter - 1;
+            return {
+              ...product,
+              counter: newCounter,
+              isMaxCount: false,
+              finalPrice: product.offerPrice
+                ? product.offerPrice * newCounter
+                : product.price * newCounter,
+            };
+          }
+        }
+        return product;
+      })
+    );
   }
 
   return (
     <>
       <div className="navbar shadow-sm sticky top-0 z-50 bg-[#1B6392]">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">E-Shop</a>
+          <Link to="/" className="btn btn-ghost text-xl">
+            E-Shop
+          </Link>
         </div>
 
         <div className="flex">
@@ -43,7 +95,7 @@ function Navbar({ cart, setCart }) {
             </div>
             <div
               tabIndex={0}
-              className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-100 shadow"
+              className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-110 shadow"
             >
               <div className="card-body h-96 overflow-y-auto">
                 <span className="text-lg font-bold text-center">
@@ -59,9 +111,31 @@ function Navbar({ cart, setCart }) {
                         <h6>{product.title}</h6>
                       </div>
                       <div>
+                        <button
+                          className="btn bg-blue-400 rounded-full p-0 h-8 w-8 mr-1"
+                          onClick={() => handleIncProductCount(product.id)}
+                        >
+                          +
+                        </button>
+                        <span>Count: {product.counter}</span>
+                        <button
+                          className="btn bg-blue-400 rounded-full p-0 h-8 w-8 ml-1"
+                          onClick={() => handleDecProductCount(product.id)}
+                        >
+                          -
+                        </button>
+                        {product.isMaxCount ? (
+                          <p className="text-red-600">
+                            That's the maximun avaliable quantity of the product
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div>
                         {" "}
                         <p className="text-orange-400">
-                          Price: {product.price}$
+                          Price: {product.finalPrice}$
                         </p>
                       </div>
                     </div>
@@ -77,7 +151,7 @@ function Navbar({ cart, setCart }) {
                 ))}
                 <span className="text-info text-center">
                   Total:
-                  {cart.reduce((a, p) => a + p.price, 0)}$
+                  {cart.reduce((a, p) => a + p.finalPrice, 0)}$
                 </span>
                 <div className="card-actions">
                   {cart.length > 0 ? (
@@ -115,7 +189,7 @@ function Navbar({ cart, setCart }) {
                 </a>
               </li>
               <li>
-                <a>Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
                 <a>Settings</a>
