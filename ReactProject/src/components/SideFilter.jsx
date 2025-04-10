@@ -1,76 +1,46 @@
 import { useState } from "react";
 
-function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
+function SideFilter({ products, setProducts, allProducts }) {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10000);
+  const [currentCategory, setCategory] = useState("");
 
-  function handlePrice() {
-    setProducts(
-      allProducts.filter(
-        (product) => product.price >= minValue && product.price <= maxValue
-      )
+  function applyFilters(
+    min = maxValue,
+    max = maxValue,
+    category = currentCategory
+  ) {
+    let currentProducts = allProducts.filter(
+      (product) => product.price >= min && product.price <= max
     );
+
+    if (category) {
+      currentProducts = currentProducts.filter(
+        (product) => product.category === category
+      );
+    }
+    setProducts(currentProducts);
   }
-  function handleElectronics() {
-    setProducts(allProducts.filter((products) => products.category === "TV"));
-  }
-  function handleLaptops() {
-    setProducts(
-      allProducts.filter(
-        (products) =>
-          products.category === "Laptops" ||
-          products.category === "Computers" ||
-          products.category === "MacBooks"
-      )
-    );
-  }
-  function handleComputerAccessories() {
-    setProducts(
-      allProducts.filter(
-        (products) => products.category === "Gaming Accessories"
-      )
-    );
-  }
-  function handleSmartphones() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Smartphones")
-    );
-  }
-  function handleHeadphones() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Headphones")
-    );
-  }
-  function handleHardsAndCarts() {
-    setProducts(
-      allProducts.filter(
-        (products) => products.category === "SSD Hards and Graphic Cards"
-      )
-    );
-  }
-  function handlePowerbanks() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Power Banks")
-    );
-  }
-  function handleCameras() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Cameras")
-    );
+  function handleCategory(category) {
+    setCategory(category);
+    applyFilters(minValue, maxValue, category);
   }
   function handleResetFilter() {
     setProducts(allProducts);
+    setMinValue(0);
+    setMaxValue(10000);
+    setCategory("");
   }
   const handleMinChange = (val) => {
     const value = Number(val);
-    handlePrice();
     if (value <= maxValue) setMinValue(value);
+    applyFilters(value, maxValue);
   };
 
   const handleMaxChange = (val) => {
     const value = Number(val);
-    handlePrice();
     if (value >= minValue) setMaxValue(value);
+    applyFilters(minValue, value);
   };
 
   return (
@@ -90,56 +60,56 @@ function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
               type="radio"
               name="frameworks"
               aria-label="Electronic Devices"
-              onChange={handleElectronics}
+              onChange={() => handleCategory("TV")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="Computer & Laptop"
-              onChange={handleLaptops}
+              onChange={() => handleCategory("Laptops&Computers")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="Computer Accessories"
-              onChange={handleComputerAccessories}
+              onChange={() => handleCategory("Gaming Accessories")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="Smartphone"
-              onChange={handleSmartphones}
+              onChange={() => handleCategory("Smartphones")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="Headphone"
-              onChange={handleHeadphones}
+              onChange={() => handleCategory("Headphones")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="SSD Hards and Graphic Cards"
-              onChange={handleHardsAndCarts}
+              onChange={() => handleCategory("SSD Hards and Graphic Cards")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="Powerbanks"
-              onChange={handlePowerbanks}
+              onChange={() => handleCategory("Power Banks")}
             />
             <input
               className="btn"
               type="radio"
               name="frameworks"
               aria-label="Cameras"
-              onChange={handleCameras}
+              onChange={() => handleCategory("Cameras")}
             />
           </form>
         </div>
