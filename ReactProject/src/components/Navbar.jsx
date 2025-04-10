@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";  // Use the correct import from react-router-dom
 import Search from "./Search";
 import { useState } from "react";
 import productsList from "../../../product";
@@ -9,9 +9,11 @@ function Navbar({ cart, setCart }) {
   const [isMaxCount, setIsMaxCount] = useState(false);
   const [allProducts] = useState(productsList);
   const [products, setProducts] = useState([]);
+
   function handleRemoveFromCart(id) {
     setCart((cart) => cart.filter((product) => product.id !== id));
   }
+
   function handleIncProductCount(id) {
     const updatedCart = cart.map((product) => {
       if (product.id === id) {
@@ -103,7 +105,7 @@ function Navbar({ cart, setCart }) {
                 <span className="text-lg font-bold text-center">
                   {cart.length === 0 && <span>Cart is empty</span>}
                   {cart.length === 1 && `${cart.length} Item`}
-                  {cart.length > 1 && `${cart.length} Item`}
+                  {cart.length > 1 && `${cart.length} Items`}
                 </span>
                 {cart.map((product) => (
                   <div className="flex justify-between gap-3" key={product.id}>
@@ -127,15 +129,15 @@ function Navbar({ cart, setCart }) {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              class="h-6 w-6 text-white hover:text-red-500 cursor-pointer transition-colors"
+                              className="h-6 w-6 text-white hover:text-red-500 cursor-pointer transition-colors"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                               />
                             </svg>
@@ -150,7 +152,7 @@ function Navbar({ cart, setCart }) {
                         )}
                         {product.isMaxCount ? (
                           <p className="text-red-600">
-                            That's the maximun avaliable quantity of the product
+                            That's the maximum available quantity of the product
                           </p>
                         ) : (
                           ""
@@ -179,9 +181,9 @@ function Navbar({ cart, setCart }) {
                 </span>
                 <div className="card-actions">
                   {cart.length > 0 ? (
-                    <button className="btn btn-primary btn-block">
-                      View cart
-                    </button>
+                    <Link to="/cart" className="btn btn-primary btn-block">
+                      View Cart
+                    </Link>
                   ) : (
                     ""
                   )}

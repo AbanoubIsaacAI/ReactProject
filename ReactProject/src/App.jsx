@@ -1,10 +1,13 @@
 import Home from "./Pages/Home";
 import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
+import CartPage from "./Pages/CartPage";
+
 import productsList from "../../product";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { useState } from "react";
 function App() {
+  const [cart, setCart] = useState([]);
   const [allProducts, setAllProducts] = useState(productsList);
   const [products, setProducts] = useState(productsList);
 
@@ -35,7 +38,8 @@ function App() {
             }
           ></Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
-        </Routes>
+          <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
+          </Routes>
       </BrowserRouter>
     </>
   );
