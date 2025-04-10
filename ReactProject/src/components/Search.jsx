@@ -17,27 +17,16 @@ function SearchDropdown() {
 
   return (
     <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-      </div>
+      <div
+        tabIndex={0}
+        role="button"
+        className="btn btn-ghost btn-circle hidden"
+      ></div>
 
       {showDropdown && (
         <div
           tabIndex={0}
-          className="card card-compact dropdown-content bg-base-100 z-10 mt-3 w-96 shadow"
+          className="card card-compact dropdown-content bg-base-100 min-w-50 z-10 mt-13 w-full sm:w-80 md:w-96 shadow"
         >
           <div className="card-body h-96 overflow-y-auto">
             {products.length === 0 ? (
@@ -47,7 +36,7 @@ function SearchDropdown() {
             ) : (
               products.map((product) => (
                 <div
-                  className="flex justify-between gap-3 cursor-pointer hover:bg-gray-500"
+                  className="flex justify-between p-2 gap-3 cursor-pointer hover:bg-gray-500"
                   key={product.id}
                 >
                   <img
@@ -68,7 +57,7 @@ function SearchDropdown() {
       <input
         type="text"
         placeholder="Search products"
-        className="input input-bordered w-64 absolute right-0 z-20"
+        className="input input-bordered w-full sm:w-64 md:w-80 right-0"
         onChange={handleSearch}
       />
     </div>

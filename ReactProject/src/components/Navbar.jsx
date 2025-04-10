@@ -64,8 +64,10 @@ function Navbar({ cart, setCart }) {
           </Link>
         </div>
 
-        <div className="flex">
-          <Search></Search>
+        <div className="flex items-center">
+          <div>
+            <Search></Search>
+          </div>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
