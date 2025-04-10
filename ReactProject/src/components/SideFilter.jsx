@@ -1,150 +1,145 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
+function SideFilter({ products, setProducts, allProducts }) {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10000);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  function handlePrice() {
-    setProducts(
-      allProducts.filter(
-        (product) => product.price >= minValue && product.price <= maxValue
-      )
+  // Combined filtering logic
+  useEffect(() => {
+    let filtered = allProducts;
+
+    // Apply category filter
+    if (selectedCategory) {
+      if (selectedCategory === "Laptops") {
+        filtered = filtered.filter((p) =>
+          ["Laptops", "MacBooks", "Computers"].includes(p.category)
+        );
+      } else {
+        filtered = filtered.filter((p) => p.category === selectedCategory);
+      }
+    }
+
+    // Apply price filter
+    filtered = filtered.filter(
+      (p) => p.price >= minValue && p.price <= maxValue
     );
-  }
-  function handleElectronics() {
-    setProducts(allProducts.filter((products) => products.category === "TV"));
-  }
-  function handleLaptops() {
-    setProducts(
-      allProducts.filter(
-        (products) =>
-          products.category === "Laptops" ||
-          products.category === "Computers" ||
-          products.category === "MacBooks"
-      )
-    );
-  }
-  function handleComputerAccessories() {
-    setProducts(
-      allProducts.filter(
-        (products) => products.category === "Gaming Accessories"
-      )
-    );
-  }
-  function handleSmartphones() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Smartphones")
-    );
-  }
-  function handleHeadphones() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Headphones")
-    );
-  }
-  function handleHardsAndCarts() {
-    setProducts(
-      allProducts.filter(
-        (products) => products.category === "SSD Hards and Graphic Cards"
-      )
-    );
-  }
-  function handlePowerbanks() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Power Banks")
-    );
-  }
-  function handleCameras() {
-    setProducts(
-      allProducts.filter((products) => products.category === "Cameras")
-    );
-  }
-  function handleResetFilter() {
+
+    setProducts(filtered);
+  }, [minValue, maxValue, selectedCategory, allProducts, setProducts]);
+
+  const handleResetFilter = () => {
+    setMinValue(0);
+    setMaxValue(10000);
+    setSelectedCategory(null);
     setProducts(allProducts);
-  }
-  const handleMinChange = (val) => {
-    const value = Number(val);
-    handlePrice();
-    if (value <= maxValue) setMinValue(value);
-  };
-
-  const handleMaxChange = (val) => {
-    const value = Number(val);
-    handlePrice();
-    if (value >= minValue) setMaxValue(value);
   };
 
   return (
     <div className="flex flex-col w-[300px] border-r border-gray-300 text-left pt-10 pl-10 pr-4">
+      {/* Category Filter */}
       <div className="mb-10">
         <h4 className="text-lg font-semibold mb-2">Category</h4>
-        <div className="space-y-2">
-          <form className="filter flex flex-col">
+        <form className="filter flex flex-col space-y-2">
+          <button
+            type="button"
+            className="btn btn-square"
+            onClick={handleResetFilter}
+          >
+            ×
+          </button>
+
+          <label>
             <input
-              className="btn btn-square"
-              type="reset"
-              value="×"
-              onClick={handleResetFilter}
-            />
-            <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Electronic Devices"
-              onChange={handleElectronics}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("TV")}
+              checked={selectedCategory === "TV"}
             />
+            Electronic Devices
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Computer & Laptop"
-              onChange={handleLaptops}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("Laptops")}
+              checked={selectedCategory === "Laptops"}
             />
+            Computer & Laptop
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Computer Accessories"
-              onChange={handleComputerAccessories}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("Gaming Accessories")}
+              checked={selectedCategory === "Gaming Accessories"}
             />
+            Computer Accessories
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Smartphone"
-              onChange={handleSmartphones}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("Smartphones")}
+              checked={selectedCategory === "Smartphones"}
             />
+            Smartphones
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Headphone"
-              onChange={handleHeadphones}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("Headphones")}
+              checked={selectedCategory === "Headphones"}
             />
+            Headphones
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="SSD Hards and Graphic Cards"
-              onChange={handleHardsAndCarts}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("SSD Hards and Graphic Cards")}
+              checked={selectedCategory === "SSD Hards and Graphic Cards"}
             />
+            SSD Hards and Graphic Cards
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Powerbanks"
-              onChange={handlePowerbanks}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("Power Banks")}
+              checked={selectedCategory === "Power Banks"}
             />
+            Powerbanks
+          </label>
+
+          <label>
             <input
-              className="btn"
               type="radio"
-              name="frameworks"
-              aria-label="Cameras"
-              onChange={handleCameras}
+              name="category"
+              className="mr-2"
+              onChange={() => setSelectedCategory("Cameras")}
+              checked={selectedCategory === "Cameras"}
             />
-          </form>
-        </div>
+            Cameras
+          </label>
+        </form>
       </div>
 
+      {/* Price Range Filter */}
       <div>
         <h4 className="text-lg font-semibold mb-4">Price Range</h4>
         <div className="space-y-4">
@@ -153,30 +148,30 @@ function SideFilter({ products, setProducts, allProducts, setAllProducts }) {
             min={0}
             max={10000}
             value={minValue}
-            onChange={(e) => handleMinChange(e.target.value)}
-            className="range [--range-bg:lightgray] [--range-thumb:blue] [--range-fill:0]"
+            onChange={(e) => setMinValue(Number(e.target.value))}
+            className="range [--range-bg:lightgray] [--range-thumb:blue]"
           />
           <input
             type="range"
             min={0}
             max={10000}
             value={maxValue}
-            onChange={(e) => handleMaxChange(e.target.value)}
-            className="range [--range-bg:lightgray] [--range-thumb:blue] [--range-fill:0]"
+            onChange={(e) => setMaxValue(Number(e.target.value))}
+            className="range [--range-bg:lightgray] [--range-thumb:blue]"
           />
 
           <div className="flex gap-4 items-center">
             <input
               type="number"
               value={minValue}
-              onChange={(e) => handleMinChange(e.target.value)}
+              onChange={(e) => setMinValue(Number(e.target.value))}
               placeholder="Min price"
               className="border border-gray-300 rounded px-2 py-1 w-24"
             />
             <input
               type="number"
               value={maxValue}
-              onChange={(e) => handleMaxChange(e.target.value)}
+              onChange={(e) => setMaxValue(Number(e.target.value))}
               placeholder="Max price"
               className="border border-gray-300 rounded px-2 py-1 w-24"
             />
