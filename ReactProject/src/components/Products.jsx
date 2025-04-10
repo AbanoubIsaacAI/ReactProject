@@ -77,7 +77,19 @@ function Products({
                     </button>
                   </p>
                 )}
-                <div style={{ color: "#2DA5F3" }}>{product.price}$</div>
+                <div style={{ color: "#2DA5F3" }}>
+                  {product.offerPrice === 0 ? (
+                    product.price
+                  ) : (
+                    <>
+                      <span className="line-through text-gray-500 mr-1">
+                        {product.price}$
+                      </span>
+                      {product.offerPrice}
+                    </>
+                  )}
+                  $
+                </div>
                 <div className="card-actions justify-end">
                   <button
                     className="btn text-white"
