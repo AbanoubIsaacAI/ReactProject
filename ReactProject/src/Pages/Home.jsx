@@ -2,14 +2,19 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import Slider from "../components/Slider";
-import { useState } from "react";
-function Home({ products, setProducts, allProducts, setAllProducts }) {
-  const [cart, setCart] = useState([]);
 
+function Home({
+  products,
+  setProducts,
+  allProducts,
+  setAllProducts,
+  cart,
+  setCart  // Use these props instead of local state
+}) {
   return (
     <>
-      <Navbar cart={cart} setCart={setCart}></Navbar>
-      <Slider></Slider>
+      <Navbar cart={cart} setCart={setCart} />
+      <Slider />
       <Products
         cart={cart}
         setCart={setCart}
@@ -18,8 +23,8 @@ function Home({ products, setProducts, allProducts, setAllProducts }) {
         allProducts={allProducts}
         setAllProducts={setAllProducts}
         displayedProductsCount={20}
-      ></Products>
-      <Footer></Footer>
+      />
+      <Footer />
     </>
   );
 }

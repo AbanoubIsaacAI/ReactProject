@@ -1,7 +1,6 @@
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
-
 function CartItem({ item, onQuantityChange, onRemove }) {
     return (
         <div className="flex items-center border-b py-4">
@@ -14,7 +13,9 @@ function CartItem({ item, onQuantityChange, onRemove }) {
             </div>
             <div className="flex-1">
                 <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
-                <p className="text-black-500 text-sm">${item.finalPrice}</p>
+                <p className="text-black-500 text-sm">
+                    ${item.offerPrice ? item.offerPrice : item.price} (each)
+                </p>
             </div>
             <div className="flex items-center gap-2">
                 <button
@@ -23,7 +24,7 @@ function CartItem({ item, onQuantityChange, onRemove }) {
                 >
                     -
                 </button>
-                <span className="px-2">{item.quantity}</span>
+                <span className="px-2">{item.counter}</span>
                 <button
                     className="btn btn-sm btn-outline"
                     onClick={() => onQuantityChange(item.id, 1)}
@@ -31,7 +32,9 @@ function CartItem({ item, onQuantityChange, onRemove }) {
                     +
                 </button>
             </div>
-            <div className="w-24 text-right">${(item.finalPrice * item.quantity).toFixed(2)}</div>
+            <div className="w-24 text-right">
+                ${item.finalPrice.toFixed(2)}
+            </div>
             <button
                 className="ml-4 text-red-500 hover:text-red-700"
                 onClick={() => onRemove(item.id)}

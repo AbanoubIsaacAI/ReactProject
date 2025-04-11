@@ -3,22 +3,25 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import SideFilter from "../components/SideFilter";
 import Slider from "../components/Slider";
-import { useState } from "react";
-function Shop({ products, setProducts, allProducts, setAllProducts }) {
-  const [cart, setCart] = useState([]);
 
+function Shop({
+  products,
+  setProducts,
+  allProducts,
+  setAllProducts,
+  cart,
+  setCart
+}) {
   return (
     <>
-      <Navbar cart={cart} setCart={setCart}></Navbar>
+      <Navbar cart={cart} setCart={setCart} />
       <div className="flex flex-col sm:flex-row">
         <SideFilter
-          cart={cart}
-          setCart={setCart}
           products={products}
           setProducts={setProducts}
           allProducts={allProducts}
           setAllProducts={setAllProducts}
-        ></SideFilter>
+        />
         <Products
           cart={cart}
           setCart={setCart}
@@ -27,9 +30,9 @@ function Shop({ products, setProducts, allProducts, setAllProducts }) {
           allProducts={allProducts}
           setAllProducts={setAllProducts}
           displayedProductsCount={100}
-        ></Products>
+        />
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

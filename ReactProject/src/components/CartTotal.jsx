@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const CartTotals = ({ subTotal, tax, discount, total }) => {
+const CartTotals = ({ subTotal, tax, discount, total, cart }) => {
     return (
         <div className="border rounded-md p-4 bg-white">
             <h3 className="text-lg font-semibold mb-4">Cart Totals</h3>
@@ -27,9 +28,18 @@ const CartTotals = ({ subTotal, tax, discount, total }) => {
                     <span>${total.toFixed(2)}</span>
                 </div>
             </div>
-            <button className="btn btn-block mt-4 bg-orange-500 hover:bg-orange-600 text-white">
-                Proceed to Checkout
-            </button>
+
+            <Link
+                to={cart.length > 0 ? "/checkout" : "#"}
+                className={`btn btn-block mt-4 ${
+                    cart.length > 0
+                        ? 'bg-orange-500 hover:bg-orange-600'
+                        : 'bg-gray-400 cursor-not-allowed'
+                } text-white`}
+                onClick={e => cart.length === 0 && e.preventDefault()}
+            >
+                Proceed to Checkout (${total.toFixed(2)})
+            </Link>
         </div>
     );
 };

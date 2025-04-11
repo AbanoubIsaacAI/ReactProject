@@ -16,7 +16,14 @@ function Products({ setCart, products, displayedProductsCount }) {
     setCart((prevCart) =>
       prevCart.some((item) => item.id === id)
         ? prevCart
-        : [...prevCart, productToAdd]
+        : [
+            ...prevCart,
+            {
+              ...productToAdd,
+              counter: 1, // Initialize counter
+              finalPrice: productToAdd.offerPrice || productToAdd.price, // Set initial price
+            },
+          ]
     );
   }
   return (

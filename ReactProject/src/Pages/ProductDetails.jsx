@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import ProductInfo from "../components/ProductInfo";
 import Reviews from "../components/Reviews";
 import RelatedProducts from "../components/RelatedProducts";
@@ -8,7 +8,7 @@ import useProduct from "../hooks/useProduct";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-const ProductDetails = () => {
+const ProductDetails = ({ cart, setCart }) => {
   const { id } = useParams();
   const {
     product,
@@ -27,8 +27,6 @@ const ProductDetails = () => {
     handleQuantityChange,
     handleReviewSubmit,
   } = useProduct(id);
-
-  const [cart, setCart] = useState([]);
 
   if (loading)
     return (
@@ -53,7 +51,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <Navbar cart={cart} setCart={setCart}></Navbar>
+      <Navbar cart={cart} setCart={setCart} />
 
       <div className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
@@ -63,12 +61,13 @@ const ProductDetails = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* product info Section */}
+              {/* Product Info Section */}
               <div className="">
                 <ProductInfo
                   product={product}
                   quantity={quantity}
                   handleQuantityChange={handleQuantityChange}
+                  cart={cart}
                   setCart={setCart}
                 />
               </div>
@@ -97,7 +96,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };
