@@ -1,7 +1,9 @@
+import React from "react";
 import { useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-function Products({ setCart, products }) {
+function Products({ setCart, products, displayedProductsCount }) {
   const [seeMore, setSeeMore] = useState({});
   function handleSeeMore(id) {
     setSeeMore((prev) => ({
@@ -19,7 +21,7 @@ function Products({ setCart, products }) {
   }
   return (
     <div className="flex flex-wrap justify-around gap-10 mt-20 mb-20 ">
-      {products.map((product) => {
+      {products.slice(0, displayedProductsCount).map((product) => {
         return (
           <div key={product.id} className="overflow-hidden">
             <div className="card bg-base-100 w-60 shadow-sm border-1 border-gray-200 border-b-0">
@@ -86,13 +88,13 @@ function Products({ setCart, products }) {
                 </div>
                 <div className="card-actions justify-end">
                   <button
-                    className="btn text-white"
+                    className="btn w-full mt-2 text-white"
                     style={{ backgroundColor: "#FA8232" }}
                     onClick={() => {
                       handleBuy(product.id);
                     }}
                   >
-                    Add To Cart
+                    <FaShoppingCart /> Add To Cart
                   </button>
                 </div>
                 <Link to={`/product/${product.id}`} className="w-full">

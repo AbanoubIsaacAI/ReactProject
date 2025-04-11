@@ -17,6 +17,7 @@ function Home({ products, setProducts, allProducts, setAllProducts }) {
         setProducts={setProducts}
         allProducts={allProducts}
         setAllProducts={setAllProducts}
+        displayedProductsCount={20}
       ></Products>
       <Footer></Footer>
     </>
