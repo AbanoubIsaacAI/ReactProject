@@ -98,7 +98,11 @@ function Navbar({ cart, setCart }) {
                   {cart.length === 0 && (
                     <>
                       <span>Your cart is empty</span>
-
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png"
+                        alt="Empty cart"
+                        className="w-50 relative left-[50%] translate-x-[-50%]"
+                      />
                       <Link to={`/shop`} className="w-full">
                         <button
                           className="btn w-full mt-2 text-white"
@@ -192,7 +196,7 @@ function Navbar({ cart, setCart }) {
                   {
                     <Link
                       to="/cart"
-                      className="btn btn-block"
+                      className="btn btn-block text-white"
                       style={{ backgroundColor: "#FA8232" }}
                     >
                       View Cart
