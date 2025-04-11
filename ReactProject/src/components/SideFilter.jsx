@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Range } from "react-range";
 
 function SideFilter({ setProducts, allProducts }) {
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(10000);
+  const [minValue, setMinValue] = useState("");
+  const [maxValue, setMaxValue] = useState(4000);
   const [currentCategory, setCategory] = useState("");
 
   function applyFilters(
@@ -28,7 +29,7 @@ function SideFilter({ setProducts, allProducts }) {
   function handleResetFilter() {
     setProducts(allProducts);
     setMinValue(0);
-    setMaxValue(10000);
+    setMaxValue(4000);
     setCategory("");
   }
   const handleMinChange = (val) => {
@@ -44,11 +45,11 @@ function SideFilter({ setProducts, allProducts }) {
   };
 
   return (
-    <div className="flex flex-col w-[300px] border-r border-gray-300 text-left pt-10 pl-10 pr-4">
+    <div className="flex flex-col w-[250] border-r border-gray-300 text-left pt-10 pl-10 pr-4 mr-10">
       <div className="mb-10">
         <h4 className="text-lg font-semibold mb-2">Category</h4>
         <div className="space-y-2">
-          <form className="filter flex flex-col">
+          <form className="filter flex sm:flex-col flex-row">
             <input
               className="btn btn-square"
               type="reset"
@@ -113,43 +114,54 @@ function SideFilter({ setProducts, allProducts }) {
             />
           </form>
         </div>
-      </div>
+        <div className="mt-10 max-w-[220px]">
+          <h4 className="text-lg font-semibold mb-4">Price Range</h4>
+          <div className="space-y-4">
+            <div className="w-full max-w-md">
+              <Range
+                step={50}
+                min={0}
+                max={4000}
+                values={[minValue, maxValue]}
+                onChange={([newMin, newMax]) => {
+                  setMinValue(newMin);
+                  setMaxValue(newMax);
+                  applyFilters(newMin, newMax);
+                }}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    className="h-2 bg-gray-300 rounded-full"
+                    style={{ ...props.style }}
+                  >
+                    {children}
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    className="h-5 w-5 bg-blue-500 rounded-full shadow-md cursor-pointer"
+                  />
+                )}
+              />
+            </div>
 
-      <div>
-        <h4 className="text-lg font-semibold mb-4">Price Range</h4>
-        <div className="space-y-4">
-          <input
-            type="range"
-            min={0}
-            max={10000}
-            value={minValue}
-            onChange={(e) => handleMinChange(e.target.value)}
-            className="range [--range-bg:lightgray] [--range-thumb:blue] [--range-fill:0]"
-          />
-          <input
-            type="range"
-            min={0}
-            max={10000}
-            value={maxValue}
-            onChange={(e) => handleMaxChange(e.target.value)}
-            className="range [--range-bg:lightgray] [--range-thumb:blue] [--range-fill:0]"
-          />
-
-          <div className="flex gap-4 items-center">
-            <input
-              type="number"
-              value={minValue}
-              onChange={(e) => handleMinChange(e.target.value)}
-              placeholder="Min price"
-              className="border border-gray-300 rounded px-2 py-1 w-24"
-            />
-            <input
-              type="number"
-              value={maxValue}
-              onChange={(e) => handleMaxChange(e.target.value)}
-              placeholder="Max price"
-              className="border border-gray-300 rounded px-2 py-1 w-24"
-            />
+            <div className="flex gap-4 items-center">
+              <input
+                type="text"
+                value={minValue}
+                onChange={(e) => handleMinChange(e.target.value)}
+                placeholder="Min price"
+                className="border border-gray-300 rounded px-2 py-1 w-24"
+              />
+              <input
+                type="text"
+                value={maxValue}
+                onChange={(e) => handleMaxChange(e.target.value)}
+                placeholder="Max price"
+                className="border border-gray-300 rounded px-2 py-1 w-24"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ function Shop({ products, setProducts, allProducts, setAllProducts }) {
   return (
     <>
       <Navbar cart={cart} setCart={setCart}></Navbar>
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         <SideFilter
           cart={cart}
           setCart={setCart}
@@ -26,6 +26,7 @@ function Shop({ products, setProducts, allProducts, setAllProducts }) {
           setProducts={setProducts}
           allProducts={allProducts}
           setAllProducts={setAllProducts}
+          displayedProductsCount={100}
         ></Products>
       </div>
       <Footer></Footer>

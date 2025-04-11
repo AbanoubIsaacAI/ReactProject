@@ -8,7 +8,7 @@ import useProduct from "../hooks/useProduct";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-const ProductDetails = ({ products }) => {
+const ProductDetails = () => {
   const { id } = useParams();
   const {
     product,
