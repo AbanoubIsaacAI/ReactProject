@@ -5,7 +5,6 @@ import ProductInfo from "../components/ProductInfo";
 import Reviews from "../components/Reviews";
 import RelatedProducts from "../components/RelatedProducts";
 import useProduct from "../hooks/useProduct";
-import { Spinner, Alert } from "react-bootstrap";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -31,26 +30,26 @@ const ProductDetails = () => {
 
   const [cart, setCart] = useState([]);
 
-  if (loading)
-    return (
-      <div className="flex justify-center mt-16">
-        <Spinner animation="border" variant="primary" />
-      </div>
-    );
+if (loading)
+  return (
+    <div className="flex justify-center mt-16">
+      <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
 
-  if (error)
-    return (
-      <Alert variant="danger" className="mt-4">
-        {error}
-      </Alert>
-    );
+if (error)
+  return (
+    <div className="bg-red-100 text-red-800 px-4 py-3 rounded-lg text-sm mt-4 mx-auto max-w-lg">
+      {error}
+    </div>
+  );
 
-  if (!product)
-    return (
-      <Alert variant="warning" className="mt-4">
-        ❌ Product not found.
-      </Alert>
-    );
+if (!product)
+  return (
+    <div className="bg-yellow-100 text-yellow-800 px-4 py-3 rounded-lg text-sm mt-4 mx-auto max-w-lg">
+      ❌ Product not found.
+    </div>
+  );
 
   return (
     <>
