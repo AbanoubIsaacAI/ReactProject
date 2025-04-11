@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 function Products({
   cart,
@@ -101,6 +102,14 @@ function Products({
                     Add To Cart
                   </button>
                 </div>
+                <Link to={`/product/${product.id}`} className="w-full">
+                  <button
+                    className="btn w-full mt-2 text-white"
+                    style={{ backgroundColor: "#FA8232" }}
+                  >
+                    View Details
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
