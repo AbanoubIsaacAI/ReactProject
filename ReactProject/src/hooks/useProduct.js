@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import productsList from "../../products";
+import productsList from "../../product";
 
 const useProduct = (id) => {
   const [product, setProduct] = useState(null);
@@ -12,7 +12,6 @@ const useProduct = (id) => {
   const [comment, setComment] = useState("");
   const [ratingSubmitted, setRatingSubmitted] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
-  const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,7 +57,7 @@ const useProduct = (id) => {
 
     setProduct({
       ...product,
-      reviews: [...(product.reviews || []), newReview],
+      reviews: [newReview],
     });
 
     if (rating > 0) setRatingSubmitted(true);
@@ -67,12 +66,7 @@ const useProduct = (id) => {
     setComment("");
   };
 
-  const addToWishlist = (productToAdd) => {
-    const exists = wishlist.find((item) => item.id === productToAdd.id);
-    if (!exists) {
-      setWishlist([...wishlist, productToAdd]);
-    }
-  };
+  
 
   return {
     product,
@@ -85,14 +79,12 @@ const useProduct = (id) => {
     comment,
     ratingSubmitted,
     commentSubmitted,
-    wishlist,
     setQuantity,
     setActiveTab,
     setRating,
     setComment,
     handleQuantityChange,
     handleReviewSubmit,
-    addToWishlist,
   };
 };
 
