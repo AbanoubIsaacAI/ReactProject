@@ -69,7 +69,6 @@ const ProductDetails = ({ products }) => {
                   product={product}
                   quantity={quantity}
                   handleQuantityChange={handleQuantityChange}
-                  products={products}
                   setCart={setCart}
                 />
               </div>

@@ -27,10 +27,7 @@ function App() {
               ></Home>
             }
           ></Route>
-          <Route
-            path="/product/:id"
-            element={<ProductDetails products={products} />}
-          />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route
             path="/shop"
             element={

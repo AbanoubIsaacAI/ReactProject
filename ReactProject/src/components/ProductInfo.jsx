@@ -12,13 +12,7 @@ import {
   FaGooglePay,
 } from "react-icons/fa";
 
-const ProductInfo = ({
-  product,
-  quantity,
-  handleQuantityChange,
-  products,
-  setCart,
-}) => {
+const ProductInfo = ({ product, quantity, handleQuantityChange, setCart }) => {
   function handleBuy(id) {
     setCart((prevCart) =>
       prevCart.some((item) => item.id === id)
@@ -94,6 +88,7 @@ const ProductInfo = ({
                   max={product.quantity}
                   value={quantity}
                   onChange={handleQuantityChange}
+                  disabled={product.quantity === 0}
                   className="border border-gray-300 rounded-md px-3 py-2 text-center text-black"
                 />
               </div>
@@ -109,7 +104,12 @@ const ProductInfo = ({
             {/* Action Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mb-6">
               <button
-                className="bg-blue-600 cursor-pointer text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 hover:bg-blue-700 transition duration-200 text-lg"
+                disabled={product.quantity === 0}
+                className={`${
+                  product.quantity === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-700"
+                } text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 transition duration-200 text-lg`}
                 onClick={() => handleBuy(product.id)}
               >
                 <FaShoppingCart className="mr-2" /> ADD TO CART
