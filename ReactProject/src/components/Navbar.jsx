@@ -95,7 +95,20 @@ function Navbar({ cart, setCart }) {
             >
               <div className="card-body h-96 overflow-y-auto">
                 <span className="text-lg font-bold text-center">
-                  {cart.length === 0 && <span>Cart is empty</span>}
+                  {cart.length === 0 && (
+                    <>
+                      <span>Your cart is empty</span>
+
+                      <Link to={`/shop`} className="w-full">
+                        <button
+                          className="btn w-full mt-2 text-white"
+                          style={{ backgroundColor: "#FA8232" }}
+                        >
+                          Start shoping
+                        </button>
+                      </Link>
+                    </>
+                  )}
                   {cart.length === 1 && `${cart.length} Item`}
                   {cart.length > 1 && `${cart.length} Items`}
                 </span>
@@ -167,13 +180,21 @@ function Navbar({ cart, setCart }) {
                     </div>
                   </div>
                 ))}
-                <span className="text-info text-center">
-                  Total:
-                  {cart.reduce((a, p) => a + p.finalPrice, 0)}$
-                </span>
+                {cart.length != 0 ? (
+                  <span className="text-info text-center">
+                    Total:
+                    {cart.reduce((a, p) => a + p.finalPrice, 0)}$
+                  </span>
+                ) : (
+                  ""
+                )}
                 <div className="card-actions">
                   {cart.length > 0 ? (
-                    <Link to="/cart" className="btn btn-primary btn-block">
+                    <Link
+                      to="/cart"
+                      className="btn btn-block"
+                      style={{ backgroundColor: "#FA8232" }}
+                    >
                       View Cart
                     </Link>
                   ) : (
