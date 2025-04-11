@@ -189,7 +189,7 @@ function Navbar({ cart, setCart }) {
                   ""
                 )}
                 <div className="card-actions">
-                  {cart.length > 0 ? (
+                  {
                     <Link
                       to="/cart"
                       className="btn btn-block"
@@ -197,9 +197,7 @@ function Navbar({ cart, setCart }) {
                     >
                       View Cart
                     </Link>
-                  ) : (
-                    ""
-                  )}
+                  }
                 </div>
               </div>
             </div>
