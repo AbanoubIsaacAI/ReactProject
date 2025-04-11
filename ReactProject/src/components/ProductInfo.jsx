@@ -20,11 +20,10 @@ const ProductInfo = ({
   setCart,
 }) => {
   function handleBuy(id) {
-    const productToAdd = products.find((product) => product.id === id);
     setCart((prevCart) =>
       prevCart.some((item) => item.id === id)
         ? prevCart
-        : [...prevCart, productToAdd]
+        : [...prevCart, { ...product, counter: quantity }]
     );
   }
   return (
@@ -92,13 +91,20 @@ const ProductInfo = ({
                 <input
                   type="number"
                   min={1}
-                  max={20}
+                  max={product.quantity}
                   value={quantity}
                   onChange={handleQuantityChange}
                   className="border border-gray-300 rounded-md px-3 py-2 text-center text-black"
                 />
               </div>
             </div>
+            {quantity === product.quantity ? (
+              <p className="text-red-500">
+                That's the maximum available quantity of the product
+              </p>
+            ) : (
+              ""
+            )}
 
             {/* Action Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mb-6">
