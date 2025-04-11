@@ -1,14 +1,7 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-function Products({
-  cart,
-  setCart,
-  products,
-  setProducts,
-  allProducts,
-  setAllProducts,
-}) {
+function Products({ setCart, products }) {
   const [seeMore, setSeeMore] = useState({});
   function handleSeeMore(id) {
     setSeeMore((prev) => ({

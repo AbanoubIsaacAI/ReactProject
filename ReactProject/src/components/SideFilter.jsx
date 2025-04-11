@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SideFilter({ products, setProducts, allProducts }) {
+function SideFilter({ setProducts, allProducts }) {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(10000);
   const [currentCategory, setCategory] = useState("");

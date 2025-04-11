@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import productsList from "../../product";
+import productsList from "../../../product";
 
 const useProduct = (id) => {
   const [product, setProduct] = useState(null);
@@ -65,8 +65,6 @@ const useProduct = (id) => {
 
     setComment("");
   };
-
-  
 
   return {
     product,

@@ -1,15 +1,7 @@
-import { Link } from "react-router-dom";  // Use the correct import from react-router-dom
+import { Link } from "react-router-dom";
 import Search from "./Search";
-import { useState } from "react";
-import productsList from "../../../product";
 
 function Navbar({ cart, setCart }) {
-  const [finalprice, setFinalPrice] = useState(0);
-  const [productCounter, setProductCounter] = useState(0);
-  const [isMaxCount, setIsMaxCount] = useState(false);
-  const [allProducts] = useState(productsList);
-  const [products, setProducts] = useState([]);
-
   function handleRemoveFromCart(id) {
     setCart((cart) => cart.filter((product) => product.id !== id));
   }

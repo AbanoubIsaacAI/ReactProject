@@ -1,13 +1,37 @@
 import React from "react";
-import { FaStar, FaShoppingCart, FaHeart, FaBalanceScale, FaShareAlt, FaCcVisa, FaCcMastercard, FaCcPaypal, FaApple, FaGooglePay } from "react-icons/fa";
+import {
+  FaStar,
+  FaShoppingCart,
+  FaHeart,
+  FaBalanceScale,
+  FaShareAlt,
+  FaCcVisa,
+  FaCcMastercard,
+  FaCcPaypal,
+  FaApple,
+  FaGooglePay,
+} from "react-icons/fa";
 
-const ProductInfo = ({ product, quantity, handleQuantityChange }) => {
+const ProductInfo = ({
+  product,
+  quantity,
+  handleQuantityChange,
+  products,
+  setCart,
+}) => {
+  function handleBuy(id) {
+    const productToAdd = products.find((product) => product.id === id);
+    setCart((prevCart) =>
+      prevCart.some((item) => item.id === id)
+        ? prevCart
+        : [...prevCart, productToAdd]
+    );
+  }
   return (
     <div className="flex flex-col min-h-screen py-10 bg-gray-50">
-
       <div className="flex-grow flex justify-center items-center px-6 shadow-2xl">
-      <div className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl w-full rounded-lg p-8 flex flex-col md:flex-row gap-8">
-      {/* Product Image */}
+        <div className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl w-full rounded-lg p-8 flex flex-col md:flex-row gap-8">
+          {/* Product Image */}
           <div className="flex justify-center items-center w-full md:w-1/2">
             <img
               src={product.image || "/default-placeholder.png"}
@@ -19,7 +43,9 @@ const ProductInfo = ({ product, quantity, handleQuantityChange }) => {
           {/* Product Details */}
           <div className="w-full md:w-1/2">
             {/* Product Title */}
-            <h4 className="text-gray-800 font-semibold text-3xl mb-2">{product.title}</h4>
+            <h4 className="text-gray-800 font-semibold text-3xl mb-2">
+              {product.title}
+            </h4>
 
             {/* Availability */}
             <p className="mb-1 text-sm text-gray-500">
@@ -58,30 +84,34 @@ const ProductInfo = ({ product, quantity, handleQuantityChange }) => {
 
             {/* Quantity Selector */}
             <div className="mb-4">
-  <label className="font-bold text-gray-700">Quantity</label>
-  <div className="flex items-center mt-2" style={{ maxWidth: "150px" }}>
-    <input
-      type="number"
-      min={1}
-      max={20}
-      value={quantity}
-      onChange={handleQuantityChange}
-      className="border border-gray-300 rounded-md px-3 py-2 text-center text-black" 
-    />
-  </div>
-</div>
-
+              <label className="font-bold text-gray-700">Quantity</label>
+              <div
+                className="flex items-center mt-2"
+                style={{ maxWidth: "150px" }}
+              >
+                <input
+                  type="number"
+                  min={1}
+                  max={20}
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                  className="border border-gray-300 rounded-md px-3 py-2 text-center text-black"
+                />
+              </div>
+            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mb-6">
-  <button className="bg-blue-600 cursor-pointer text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 hover:bg-blue-700 transition duration-200 text-lg">
-    <FaShoppingCart className="mr-2" /> ADD TO CART
-  </button>
-  <button className="bg-yellow-600 cursor-pointer text-white font-semibold py-2 px-12 rounded-md w-full md:w-1/2 hover:bg-yellow-500 transition duration-200 text-lg">
-    BUY NOW
-  </button>
-</div>
-
+              <button
+                className="bg-blue-600 cursor-pointer text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 hover:bg-blue-700 transition duration-200 text-lg"
+                onClick={() => handleBuy(product.id)}
+              >
+                <FaShoppingCart className="mr-2" /> ADD TO CART
+              </button>
+              <button className="bg-yellow-600 cursor-pointer text-white font-semibold py-2 px-12 rounded-md w-full md:w-1/2 hover:bg-yellow-500 transition duration-200 text-lg">
+                BUY NOW
+              </button>
+            </div>
 
             {/* Wishlist, Compare, Share */}
             <div className="mt-4 flex gap-6 text-gray-600">
@@ -98,7 +128,9 @@ const ProductInfo = ({ product, quantity, handleQuantityChange }) => {
 
             {/* Safe Checkout Section */}
             <div className="mt-6 border-t pt-4">
-              <p className="mb-2 font-semibold text-gray-800">100% Guarantee Safe Checkout</p>
+              <p className="mb-2 font-semibold text-gray-800">
+                100% Guarantee Safe Checkout
+              </p>
               <div className="flex justify-between max-w-[320px] mx-auto">
                 <FaCcVisa size={30} className="text-blue-500" />
                 <FaCcMastercard size={30} className="text-black" />

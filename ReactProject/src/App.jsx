@@ -2,7 +2,7 @@ import Home from "./Pages/Home";
 import Shop from "./Pages/Shop";
 import Dashboard from "./Pages/Dashboard";
 import CartPage from "./Pages/CartPage";
-import ProductDetails from "./Pages/ProductDetails"
+import ProductDetails from "./Pages/ProductDetails";
 
 import productsList from "../../product";
 import { BrowserRouter, Route, Routes } from "react-router";
@@ -27,7 +27,10 @@ function App() {
               ></Home>
             }
           ></Route>
-          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route
+            path="/product/:id"
+            element={<ProductDetails products={products} />}
+          />
           <Route
             path="/shop"
             element={
@@ -40,8 +43,11 @@ function App() {
             }
           ></Route>
           <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
-          <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
-          </Routes>
+          <Route
+            path="/cart"
+            element={<CartPage cart={cart} setCart={setCart} />}
+          />
+        </Routes>
       </BrowserRouter>
     </>
   );
