@@ -1,0 +1,107 @@
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import ProductInfo from "../components/ProductInfo";
+import Reviews from "../components/Reviews";
+import RelatedProducts from "../components/RelatedProducts";
+import useProduct from "../hooks/useProduct";
+import { Spinner, Alert } from "react-bootstrap";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+
+const ProductDetails = () => {
+  const { id } = useParams();
+  const {
+    product,
+    relatedProducts,
+    quantity,
+    activeTab,
+    loading,
+    error,
+    rating,
+    comment,
+    ratingSubmitted,
+    commentSubmitted,
+    setActiveTab,
+    setRating,
+    setComment,
+    handleQuantityChange,
+    handleReviewSubmit,
+  } = useProduct(id);
+
+  const [cart, setCart] = useState([]);
+
+  if (loading)
+    return (
+      <div className="flex justify-center mt-16">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+
+  if (error)
+    return (
+      <Alert variant="danger" className="mt-4">
+        {error}
+      </Alert>
+    );
+
+  if (!product)
+    return (
+      <Alert variant="warning" className="mt-4">
+        ❌ Product not found.
+      </Alert>
+    );
+
+  return (
+    <>
+          <Navbar cart={cart} setCart={setCart}></Navbar>
+
+    <div className="py-12 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white p-8 rounded-xl shadow-xl w-[100%]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+             {/* product info Section */}
+            <div className="">
+              <ProductInfo
+                product={product}
+                quantity={quantity}
+                handleQuantityChange={handleQuantityChange}
+              />
+            </div>
+          </motion.div>
+
+          {/* Reviews Section */}
+          <div className="mt-8">
+            <Reviews
+              product={product}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              rating={rating}
+              setRating={setRating}
+              comment={comment}
+              setComment={setComment}
+              handleReviewSubmit={handleReviewSubmit}
+              ratingSubmitted={ratingSubmitted}
+              commentSubmitted={commentSubmitted}
+            />
+          </div>
+
+          {/* Related Products Section */}
+          <div className="mt-12">
+            <RelatedProducts relatedProducts={relatedProducts} />
+          </div>
+        </div>
+      </div>
+    </div>
+    <Footer></Footer>
+
+    </>
+    
+  );
+};
+
+export default ProductDetails;
