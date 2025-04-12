@@ -3,18 +3,21 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import SideFilter from "../components/SideFilter";
 import Slider from "../components/Slider";
-
+import { useState } from "react";
 function Shop({
   products,
   setProducts,
   allProducts,
   setAllProducts,
   cart,
-  setCart
+  setCart, 
+  wishlist,
+  setWishlist
 }) {
+  
   return (
     <>
-      <Navbar cart={cart} setCart={setCart} />
+      <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist}/>
       <div className="flex flex-col sm:flex-row">
         <SideFilter
           products={products}
