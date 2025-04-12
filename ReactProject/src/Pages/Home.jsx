@@ -9,11 +9,13 @@ function Home({
   allProducts,
   setAllProducts,
   cart,
-  setCart  // Use these props instead of local state
+  setCart,
+  wishlist,      
+  setWishlist,  
 }) {
   return (
     <>
-      <Navbar cart={cart} setCart={setCart} />
+      <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist} />
       <Slider />
       <Products
         cart={cart}
@@ -23,6 +25,8 @@ function Home({
         allProducts={allProducts}
         setAllProducts={setAllProducts}
         displayedProductsCount={20}
+        wishlist={wishlist}        
+        setWishlist={setWishlist}  
       />
       <Footer />
     </>
