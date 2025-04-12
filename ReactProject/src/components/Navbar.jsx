@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Search from "./Search";
 
-function Navbar({ cart, setCart }) {
+function Navbar({ cart, setCart, wishlist, setWishlist }) {
+  
   function handleRemoveFromCart(id) {
     setCart((cart) => cart.filter((product) => product.id !== id));
   }
@@ -49,6 +50,15 @@ function Navbar({ cart, setCart }) {
     );
   }
 
+  function handleRemoveFromWishlist(id) {
+    setWishlist((wishlist) => wishlist.filter((product) => product.id !== id));
+  }
+
+  function handleAddToCartFromWishlist(id) {
+    const product = wishlist.find((item) => item.id === id);
+    setCart((prevCart) => [...prevCart, { ...product, counter: 1 }]);
+  }
+
   return (
     <>
       <div className="navbar shadow-sm sticky top-0 z-50 bg-[#1B6392]">
@@ -62,6 +72,119 @@ function Navbar({ cart, setCart }) {
           <div>
             <Search></Search>
           </div>
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+              <div className="indicator">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  className="h-6 w-6 text-gray-700"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+          2 6.01 4.01 4 6.5 4c1.74 0 3.41 1.01 4.13 2.44h1.74C14.09 5.01 
+          15.76 4 17.5 4 19.99 4 22 6.01 22 8.5c0 3.78-3.4 
+          6.86-8.55 11.54L12 21.35z"
+                  />
+                </svg>
+                <span className="badge badge-sm indicator-item">{wishlist.length}</span>
+              </div>
+            </div>
+
+            <div
+              tabIndex={0}
+              className="card card-compact dropdown-content bg-base-100 z-10 mt-3 w-96 shadow-lg"
+            >
+              <div className="card-body max-h-96 overflow-y-auto space-y-4">
+                {wishlist.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-60 text-center text-gray-400">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-16 w-16 mb-3 text-gray-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+              2 6.01 4.01 4 6.5 4c1.74 0 3.41 1.01 4.13 2.44h1.74C14.09 5.01 
+              15.76 4 17.5 4 19.99 4 22 6.01 22 8.5c0 3.78-3.4 
+              6.86-8.55 11.54L12 21.35z"
+                      />
+                    </svg>
+                    <span>Your favourite list is empty</span>
+                    <img
+                      src="https://img.icons8.com/?size=100&id=117006&format=png&color=000000"
+                      alt="Empty favourites"
+                      className="w-50 relative left-[30%] translate-x-[-50%]"
+                    />
+                    <Link to={`/shop`} className="w-full">
+                      <button
+                        className="btn w-50 text-white  "
+                        style={{ backgroundColor: "#FA8232" }}
+                      >
+                        Show Products
+                      </button>
+                    </Link>
+
+                  </div>
+                ) : (
+                  <>
+                    <span className="text-lg font-bold text-center block">
+                      {wishlist.length === 1
+                        ? `${wishlist.length} Item`
+                        : `${wishlist.length} Items`}
+                    </span>
+
+                    {wishlist.map((product) => (
+                      <div
+                        className="flex items-center gap-4 p-3 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition"
+                        key={product.id}
+                      >
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="w-20 h-20 object-cover rounded-md"
+                        />
+                        <div className="flex flex-col justify-between flex-grow">
+                          <h6 className="font-semibold text-sm line-clamp-2">
+                            {product.title}
+                          </h6>
+                          <p className="text-orange-500 font-medium text-sm mt-1">
+                            Price: {product.finalPrice}$
+                          </p>
+                          <div className="flex gap-2 mt-2">
+                            <button
+                              className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600"
+                              onClick={() => handleAddToCartFromWishlist(product.id)}
+                            >
+                              Add to Cart
+                            </button>
+                            <button
+                              className="btn btn-sm bg-red-500 text-white hover:bg-red-600"
+                              onClick={() => handleRemoveFromWishlist(product.id)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
+
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -108,7 +231,7 @@ function Navbar({ cart, setCart }) {
                           className="btn w-full mt-2 text-white"
                           style={{ backgroundColor: "#FA8232" }}
                         >
-                          Start shopping
+                          Start shoping
                         </button>
                       </Link>
                     </>
