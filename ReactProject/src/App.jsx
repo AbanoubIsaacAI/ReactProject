@@ -8,6 +8,7 @@ import Checkout from "./Pages/CheckoutPage";
 import CheckoutSuccess from './Pages/CheckoutSuccessPage';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import Offers from "./Pages/Offers";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -31,6 +32,19 @@ function App() {
               wishlist={wishlist}
               setWishlist={setWishlist}
               
+            />
+          }
+        />
+        <Route
+          path="/offers"
+          element={
+            <Offers
+              products={products}
+              setProducts={setProducts}
+              allProducts={allProducts}
+              setAllProducts={setAllProducts}
+              cart={cart}
+              setCart={setCart}
             />
           }
         />

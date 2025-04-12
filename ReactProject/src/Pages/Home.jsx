@@ -1,5 +1,7 @@
 import Footer from "../components/Footer";
+import GoShopping from "../components/GoShopping";
 import Navbar from "../components/Navbar";
+import OffersAndShop from "../components/OffersAndShop";
 import Products from "../components/Products";
 import Slider from "../components/Slider";
 
@@ -10,13 +12,26 @@ function Home({
   setAllProducts,
   cart,
   setCart,
-  wishlist,      
-  setWishlist,  
+  wishlist,
+  setWishlist,
 }) {
   return (
     <>
-      <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist} />
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
+      />
       <Slider />
+      <div className="flex flex-wrap m-10 gap-4 justify-center">
+        <div className=" md:basis-[45%] w-full">
+          <OffersAndShop></OffersAndShop>
+        </div>
+        <div className=" md:basis-[45%]">
+          <GoShopping></GoShopping>
+        </div>
+      </div>
       <Products
         cart={cart}
         setCart={setCart}
@@ -25,9 +40,10 @@ function Home({
         allProducts={allProducts}
         setAllProducts={setAllProducts}
         displayedProductsCount={20}
-        wishlist={wishlist}        
-        setWishlist={setWishlist}  
+        wishlist={wishlist}
+        setWishlist={setWishlist}
       />
+
       <Footer />
     </>
   );
