@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 
-const ProductInfo = ({ product, quantity, handleQuantityChange, setCart }) => {
+const ProductInfo = ({ product, quantity, handleQuantityChange, setCart, setWishlist }) => {
   const navigate = useNavigate();
   function handleAddToCart(id) {
     setCart((prevCart) =>
@@ -36,7 +36,15 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart }) => {
         return [...prevCart, { ...product, counter: quantity }];
       }
     });
-    navigate("/checkout"); // go to checkout
+    navigate("/checkout");
+  }
+
+  function handleAddToWishlist(id) {
+    setWishlist((prevWishlist) =>
+      prevWishlist.some((item) => item.id === id)
+        ? prevWishlist
+        : [...prevWishlist, product]
+    );
   }
   return (
     <div className="flex flex-col min-h-screen py-10 bg-gray-50">
@@ -53,6 +61,7 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart }) => {
 
           {/* Product Details */}
           <div className="w-full md:w-1/2">
+
             {/* Product Title */}
             <h4 className="text-gray-800 font-semibold text-3xl mb-2">
               {product.title}
@@ -120,7 +129,6 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart }) => {
             )}
 
             {/* Action Buttons */}
-            {/* Action Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mb-6">
               <button
                 disabled={product.quantity === 0}
@@ -144,8 +152,11 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart }) => {
 
             {/* Wishlist, Compare, Share */}
             <div className="mt-4 flex gap-6 text-gray-600">
-              <div className="flex items-center gap-2">
-                <FaHeart /> Add to Wishlist
+              <div
+                className="flex items-center gap-2 cursor-pointer hover:text-gray-400"
+                onClick={() => handleAddToWishlist(product.id)}
+              >
+                <FaHeart /> Add to favourite
               </div>
               <div className="flex items-center gap-2">
                 <FaBalanceScale /> Add to Compare
