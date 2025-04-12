@@ -5,7 +5,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-const Checkout = ({ cart, setCart }) => {
+const Checkout = ({ cart, setCart ,wishlist, setWishlist }) => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -44,7 +44,7 @@ const Checkout = ({ cart, setCart }) => {
 
     return (
         <>
-            <Navbar cart={cart} setCart={setCart} />
+            <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist}/>
             <div className="p-6 bg-gray-50 min-h-screen">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 
