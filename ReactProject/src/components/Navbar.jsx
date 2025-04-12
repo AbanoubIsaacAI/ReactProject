@@ -108,7 +108,7 @@ function Navbar({ cart, setCart }) {
                           className="btn w-full mt-2 text-white"
                           style={{ backgroundColor: "#FA8232" }}
                         >
-                          Start shoping
+                          Start shopping
                         </button>
                       </Link>
                     </>
