@@ -8,7 +8,7 @@ import useProduct from "../hooks/useProduct";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-const ProductDetails = ({ cart, setCart }) => {
+const ProductDetails = ({ cart, setCart, wishlist, setWishlist }) => {
   const { id } = useParams();
   const {
     product,
@@ -51,7 +51,12 @@ const ProductDetails = ({ cart, setCart }) => {
 
   return (
     <>
-      <Navbar cart={cart} setCart={setCart} />
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
+      />
 
       <div className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
@@ -69,6 +74,7 @@ const ProductDetails = ({ cart, setCart }) => {
                   handleQuantityChange={handleQuantityChange}
                   cart={cart}
                   setCart={setCart}
+                  setWishlist={setWishlist}
                 />
               </div>
             </motion.div>
