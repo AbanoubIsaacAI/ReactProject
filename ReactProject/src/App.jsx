@@ -5,7 +5,7 @@ import CartPage from "./Pages/CartPage";
 import ProductDetails from "./Pages/ProductDetails";
 import productsList from "../../product";
 import Checkout from "./Pages/CheckoutPage";
-import CheckoutSuccess from './Pages/CheckoutSuccessPage';
+import CheckoutSuccess from "./Pages/CheckoutSuccessPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
@@ -33,11 +33,7 @@ function App() {
         <Route
           path="/product/:id"
           element={
-            <ProductDetails
-              products={products}
-              cart={cart}
-              setCart={setCart}
-            />
+            <ProductDetails products={products} cart={cart} setCart={setCart} />
           }
         />
         <Route
@@ -53,7 +49,10 @@ function App() {
             />
           }
         />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard cart={cart} setCart={setCart} />}
+        />
         <Route
           path="/cart"
           element={<CartPage cart={cart} setCart={setCart} />}
