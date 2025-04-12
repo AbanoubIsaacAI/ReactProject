@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-const CheckoutSuccess = ({ cart = [], setCart = () => { } }) => {
+const CheckoutSuccess = ({ cart = [], setCart = () => { }, wishlist , setWishlist  }) => {
     const navigate = useNavigate();
 
     return (
         <>
-            <Navbar cart={cart} setCart={setCart} />
+            <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist} />
             <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
                 <CheckCircle className="text-green-500 w-16 h-16 mb-6" />
                 <h2 className="text-2xl font-semibold mb-2">Your order was successfully placed</h2>
