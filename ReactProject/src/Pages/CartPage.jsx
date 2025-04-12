@@ -7,7 +7,7 @@ import CartActions from "../components/CartActions.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
-function CartPage({ cart, setCart }) {
+function CartPage({ cart, setCart ,wishlist, setWishlist  }) {
     const [discount, setDiscount] = useState(0);
     const [discountCode, setDiscountCode] = useState('');
 
@@ -67,7 +67,7 @@ function CartPage({ cart, setCart }) {
 
     return (
         <>
-            <Navbar cart={cart} setCart={setCart} />
+            <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist}  />
             <div className="flex flex-col lg:flex-row justify-around mt-10 mb-20 px-4">
                 <div className="w-full lg:w-2/3">
                     <h2 className="text-xl font-bold mb-4">Shopping Cart</h2>
