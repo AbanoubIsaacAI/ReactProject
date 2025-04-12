@@ -71,7 +71,7 @@ const Reviews = ({
                         ))
                     ) : (
                         <div className="mt-4 p-4 bg-yellow-100 text-yellow-800 border-l-4 border-yellow-500">
-                        <strong>No reviews yet</strong>
+                        <strong>No comments yet</strong>
                     </div>
                     )}
 
