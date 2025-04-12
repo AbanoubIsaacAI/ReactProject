@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ProductInfo from "../components/ProductInfo";
 import Reviews from "../components/Reviews";
 import RelatedProducts from "../components/RelatedProducts";
