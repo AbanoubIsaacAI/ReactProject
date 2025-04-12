@@ -4,10 +4,15 @@ import LineChart from "../components/LineChart.jsx";
 import DoughnutChart from "../components/DoughnutChart.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-function Dashboard({ cart, setCart }) {
+function Dashboard({ cart, setCart, wishlist, setWishlist }) {
   return (
     <>
-      <Navbar cart={cart} setCart={setCart}></Navbar>
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
+      ></Navbar>
       <div className="p-6 bg-gray-100 min-h-screen">
         <h1 className="text-3xl font-bold mb-6 text-center">
           Dashboard Overview

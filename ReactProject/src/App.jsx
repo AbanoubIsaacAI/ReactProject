@@ -76,7 +76,17 @@ function App() {
             />
           }
         />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Dashboard
+              cart={cart}
+              setCart={setCart}
+              wishlist={wishlist}
+              setWishlist={setWishlist}
+            />
+          }
+        />
         <Route
           path="/cart"
           element={
