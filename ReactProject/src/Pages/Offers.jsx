@@ -9,10 +9,17 @@ function Offers({
   setAllProducts,
   cart,
   setCart,
+  wishlist,
+  setWishlist,
 }) {
   return (
     <>
-      <Navbar cart={cart} setCart={setCart} />
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
+      />
 
       <Products
         cart={cart}
@@ -22,6 +29,8 @@ function Offers({
         allProducts={allProducts}
         setAllProducts={setAllProducts}
         isOffer={true}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
       />
 
       <Footer />

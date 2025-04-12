@@ -12,11 +12,9 @@ function OffersAndShop() {
           backgroundPosition: "center -10%",
         }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/30 z-0" />
 
-        {/* Heading */}
-        <h2 className="relative z-10 text-white text-3xl font-bold drop-shadow-md pt-24">
+        <h2 className="relative z-10 text-gray-100 font-bold text-4xl drop-shadow-md pt-10">
           Offers
         </h2>
       </div>

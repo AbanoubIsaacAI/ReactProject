@@ -5,7 +5,7 @@ import CartPage from "./Pages/CartPage";
 import ProductDetails from "./Pages/ProductDetails";
 import productsList from "../../product";
 import Checkout from "./Pages/CheckoutPage";
-import CheckoutSuccess from './Pages/CheckoutSuccessPage';
+import CheckoutSuccess from "./Pages/CheckoutSuccessPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Offers from "./Pages/Offers";
@@ -31,7 +31,6 @@ function App() {
               setCart={setCart}
               wishlist={wishlist}
               setWishlist={setWishlist}
-              
             />
           }
         />
@@ -45,6 +44,8 @@ function App() {
               setAllProducts={setAllProducts}
               cart={cart}
               setCart={setCart}
+              wishlist={wishlist}
+              setWishlist={setWishlist}
             />
           }
         />
@@ -70,7 +71,7 @@ function App() {
               setAllProducts={setAllProducts}
               cart={cart}
               setCart={setCart}
-              wishlist={wishlist} 
+              wishlist={wishlist}
               setWishlist={setWishlist}
             />
           }
@@ -78,15 +79,31 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/cart"
-          element={<CartPage cart={cart} setCart={setCart} wishlist={wishlist} />}
+          element={
+            <CartPage cart={cart} setCart={setCart} wishlist={wishlist} />
+          }
         />
         <Route
           path="/checkout"
-          element={<Checkout cart={cart} setCart={setCart}  wishlist={wishlist} setWishlist={setWishlist} />}
+          element={
+            <Checkout
+              cart={cart}
+              setCart={setCart}
+              wishlist={wishlist}
+              setWishlist={setWishlist}
+            />
+          }
         />
         <Route
           path="/checkout/success"
-          element={<CheckoutSuccess cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist}/>}
+          element={
+            <CheckoutSuccess
+              cart={cart}
+              setCart={setCart}
+              wishlist={wishlist}
+              setWishlist={setWishlist}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

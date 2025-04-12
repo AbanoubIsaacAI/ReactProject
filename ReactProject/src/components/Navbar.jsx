@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Search from "./Search";
 
 function Navbar({ cart, setCart, wishlist, setWishlist }) {
-  
   function handleRemoveFromCart(id) {
     setCart((cart) => cart.filter((product) => product.id !== id));
   }
@@ -56,7 +55,11 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
 
   function handleAddToCartFromWishlist(id) {
     const product = wishlist.find((item) => item.id === id);
-    setCart((prevCart) => [...prevCart, { ...product, counter: 1 }]);
+    setCart((prevCart) => {
+      const alreadyInCart = prevCart.some((item) => item.id === id);
+      if (alreadyInCart) return prevCart;
+      return [...prevCart, { ...product, counter: 1 }];
+    });
   }
 
   return (
@@ -73,7 +76,11 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
             <Search></Search>
           </div>
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle"
+            >
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +99,9 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
           6.86-8.55 11.54L12 21.35z"
                   />
                 </svg>
-                <span className="badge badge-sm indicator-item">{wishlist.length}</span>
+                <span className="badge badge-sm indicator-item">
+                  {wishlist.length}
+                </span>
               </div>
             </div>
 
@@ -134,7 +143,6 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                         Show Products
                       </button>
                     </Link>
-
                   </div>
                 ) : (
                   <>
@@ -164,13 +172,17 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                           <div className="flex gap-2 mt-2">
                             <button
                               className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600"
-                              onClick={() => handleAddToCartFromWishlist(product.id)}
+                              onClick={() =>
+                                handleAddToCartFromWishlist(product.id)
+                              }
                             >
                               Add to Cart
                             </button>
                             <button
                               className="btn btn-sm bg-red-500 text-white hover:bg-red-600"
-                              onClick={() => handleRemoveFromWishlist(product.id)}
+                              onClick={() =>
+                                handleRemoveFromWishlist(product.id)
+                              }
                             >
                               Remove
                             </button>
@@ -183,7 +195,6 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
               </div>
             </div>
           </div>
-
 
           <div className="dropdown dropdown-end">
             <div
@@ -248,6 +259,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                       </div>
                       <div>
                         <button
+                          disabled={product.isMaxCount}
                           className="btn bg-blue-400 rounded-full p-0 h-8 w-8 mr-1 text-white"
                           onClick={() => handleIncProductCount(product.id)}
                         >
@@ -354,6 +366,9 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
               </li>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="/shop">Shop</Link>
               </li>
               <li>
                 <a>Settings</a>
