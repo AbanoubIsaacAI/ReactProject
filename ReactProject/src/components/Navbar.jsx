@@ -166,7 +166,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                   <Link to={`/shop`} className="w-full">
                     <button
                       className="btn w-50 text-white"
-                      style={{ backgroundColor: "#001937" }}
+                      style={{ backgroundColor: "#FA8232" }}
                     >
                       Show Products
                     </button>
@@ -262,7 +262,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                     <Link to={`/shop`} className="w-full">
                       <button
                         className="btn w-full mt-2 text-white"
-                        style={{ backgroundColor: "#001937" }}
+                        style={{ backgroundColor: "#FA8232" }}
                       >
                         Start shoping
                       </button>

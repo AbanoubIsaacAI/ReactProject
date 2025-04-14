@@ -18,18 +18,19 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
 
   function handleBuy(id) {
     const productToAdd = products.find((product) => product.id === id);
-    setCart((prevCart) =>
-      prevCart.some((item) => item.id === id)
-        ? prevCart
-        : [
-            ...prevCart,
-            {
-              ...productToAdd,
-              counter: 1,
-              finalPrice: productToAdd.offerPrice || productToAdd.price,
-            },
-          ]
-    );
+    productToAdd.quantity &&
+      setCart((prevCart) =>
+        prevCart.some((item) => item.id === id)
+          ? prevCart
+          : [
+              ...prevCart,
+              {
+                ...productToAdd,
+                counter: 1,
+                finalPrice: productToAdd.offerPrice || productToAdd.price,
+              },
+            ]
+      );
   }
 
   const renderProductCard = (product) => (
