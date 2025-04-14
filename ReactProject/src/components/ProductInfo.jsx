@@ -1,5 +1,8 @@
-import React from "react";
+
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Pages/User";
+import LoginModal from "./LoginModal";
 import {
   FaStar,
   FaShoppingCart,
@@ -21,16 +24,28 @@ const ProductInfo = ({
   setWishlist,
 }) => {
   const navigate = useNavigate();
-  function handleAddToCart(id) {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { isLoggedIn } = useContext(UserContext); // 👈 this will always be in sync
+
+  const requireLogin = (action) => {
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+    } else {
+      action();
+    }
+  };
+
+
+  const handleAddToCart = (id) => {
     setCart((prevCart) =>
       prevCart.some((item) => item.id === id)
         ? prevCart
         : [...prevCart, { ...product, counter: quantity }]
     );
     navigate("/cart");
-  }
+  };
 
-  function handleBuyNow(id) {
+  const handleBuyNow = (id) => {
     setCart((prevCart) => {
       const exists = prevCart.find((item) => item.id === id);
       if (exists) {
@@ -42,20 +57,24 @@ const ProductInfo = ({
       }
     });
     navigate("/checkout");
-  }
+  };
 
-  function handleAddToWishlist(id) {
+  const handleAddToWishlist = (id) => {
     setWishlist((prevWishlist) =>
       prevWishlist.some((item) => item.id === id)
         ? prevWishlist
         : [...prevWishlist, product]
     );
-  }
+  };
+
   return (
     <div className="flex flex-col min-h-screen py-10 bg-gray-50">
+      {showLoginModal && !isLoggedIn && (
+        <LoginModal setIsOpen={setShowLoginModal} />
+      )}
       <div className="flex-grow flex justify-center items-center px-6 shadow-2xl">
-        <div className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl w-full rounded-lg p-8 flex flex-col md:flex-row gap-8">
-          {/* Product Image */}
+        <div className="max-w-6xl w-full rounded-lg p-8 flex flex-col md:flex-row gap-8">
+          {/* Image Section */}
           <div className="flex justify-center items-center w-full md:w-1/2">
             <img
               src={product.image || "/default-placeholder.png"}
@@ -64,14 +83,12 @@ const ProductInfo = ({
             />
           </div>
 
-          {/* Product Details */}
+          {/* Info Section */}
           <div className="w-full md:w-1/2">
-            {/* Product Title */}
             <h4 className="text-gray-800 font-semibold text-3xl mb-2">
               {product.title}
             </h4>
 
-            {/* Availability */}
             <p className="mb-1 text-sm text-gray-500">
               Availability:{" "}
               {product.quantity > 0 ? (
@@ -81,19 +98,16 @@ const ProductInfo = ({
               )}
             </p>
 
-            {/* Category */}
             <p className="mb-3 text-sm text-gray-500">
               Category: <strong>{product.category}</strong>
             </p>
 
-            {/* Rating */}
             <div className="flex items-center mb-3">
               <span className="text-yellow-500 font-semibold">
                 {product.rating.rate} <FaStar className="inline ml-1" />
               </span>
             </div>
 
-            {/* Price and Offer */}
             <div className="mb-3">
               <span className="line-through text-gray-500 text-lg mr-2">
                 ${product.price}
@@ -106,13 +120,9 @@ const ProductInfo = ({
               </span>
             </div>
 
-            {/* Quantity Selector */}
             <div className="mb-4">
               <label className="font-bold text-gray-700">Quantity</label>
-              <div
-                className="flex items-center mt-2"
-                style={{ maxWidth: "150px" }}
-              >
+              <div className="flex items-center mt-2 max-w-[150px]">
                 <input
                   type="number"
                   min={1}
@@ -124,15 +134,12 @@ const ProductInfo = ({
                 />
               </div>
             </div>
-            {quantity === product.quantity ? (
+            {quantity === product.quantity && (
               <p className="text-red-500">
                 That's the maximum available quantity of the product
               </p>
-            ) : (
-              ""
             )}
 
-            {/* Action Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mb-6">
               <button
                 disabled={product.quantity === 0}
@@ -141,24 +148,32 @@ const ProductInfo = ({
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700"
                 } text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 transition duration-200 text-lg`}
-                onClick={() => handleAddToCart(product.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  requireLogin(() => handleAddToCart(product.id));
+                }}
               >
-                <FaShoppingCart className="mr-2" /> ADD TO CART
+                <FaShoppingCart className="mr-2" /> Add To Cart
               </button>
 
               <button
-                className="bg-yellow-600 cursor-pointer text-white font-semibold py-2 px-12 rounded-md w-full md:w-1/2 hover:bg-yellow-500 transition duration-200 text-lg"
-                onClick={() => handleBuyNow(product.id)}
+                className="bg-yellow-600 text-white font-semibold py-2 px-12 rounded-md w-full md:w-1/2 hover:bg-yellow-500 transition duration-200 text-lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  requireLogin(() => handleBuyNow(product.id));
+                }}
               >
-                BUY NOW
+                Buy Now
               </button>
             </div>
 
-            {/* Wishlist, Compare, Share */}
             <div className="mt-4 flex gap-6 text-gray-600">
               <div
                 className="flex items-center gap-2 cursor-pointer hover:text-gray-400"
-                onClick={() => handleAddToWishlist(product.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  requireLogin(() => handleAddToWishlist(product.id));
+                }}
               >
                 <FaHeart /> Add to favourite
               </div>
@@ -170,7 +185,6 @@ const ProductInfo = ({
               </div>
             </div>
 
-            {/* Safe Checkout Section */}
             <div className="mt-6 border-t pt-4">
               <p className="mb-2 font-semibold text-gray-800">
                 100% Guarantee Safe Checkout
