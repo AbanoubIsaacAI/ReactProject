@@ -50,7 +50,6 @@ const useProduct = (id) => {
     }
 
     const newReview = {
-      username: "User",
       rating: rating,
       comment: comment,
     };
