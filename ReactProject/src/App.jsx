@@ -9,6 +9,8 @@ import CheckoutSuccess from "./Pages/CheckoutSuccessPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Offers from "./Pages/Offers";
+import SignUp from "./Pages/SignUp";
+import Login from "./Pages/Login";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -115,6 +117,8 @@ function App() {
             />
           }
         />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

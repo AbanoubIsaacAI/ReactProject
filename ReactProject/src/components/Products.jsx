@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Pages/User";
 
 function Products({ setCart, products, displayedProductsCount, isOffer }) {
   const [seeMore, setSeeMore] = useState({});
+  const { isLoggedIn } = useContext(UserContext);
 
   function handleSeeMore(id) {
     setSeeMore((prev) => ({
@@ -114,7 +116,15 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
                   <button
                     className="btn w-full mt-2 text-white"
                     style={{ backgroundColor: "#FA8232" }}
-                    onClick={() => handleBuy(product.id)}
+                    onClick={() => {
+                      if (!isLoggedIn) {
+                        alert(
+                          "You must be logged in to add items to the cart."
+                        );
+                        return;
+                      }
+                      handleBuy(product.id);
+                    }}
                   >
                     <FaShoppingCart /> Add To Cart
                   </button>
@@ -197,7 +207,13 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
                 <button
                   className="btn w-full mt-2 text-white"
                   style={{ backgroundColor: "#FA8232" }}
-                  onClick={() => handleBuy(product.id)}
+                  onClick={() => {
+                    if (!isLoggedIn) {
+                      alert("You must be logged in to add items to the cart.");
+                      return;
+                    }
+                    handleBuy(product.id);
+                  }}
                 >
                   <FaShoppingCart /> Add To Cart
                 </button>

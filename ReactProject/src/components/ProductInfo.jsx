@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {
   FaStar,
   FaShoppingCart,
@@ -13,8 +13,13 @@ import {
   FaGooglePay,
 } from "react-icons/fa";
 
-
-const ProductInfo = ({ product, quantity, handleQuantityChange, setCart, setWishlist }) => {
+const ProductInfo = ({
+  product,
+  quantity,
+  handleQuantityChange,
+  setCart,
+  setWishlist,
+}) => {
   const navigate = useNavigate();
   function handleAddToCart(id) {
     setCart((prevCart) =>
@@ -61,7 +66,6 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart, setWish
 
           {/* Product Details */}
           <div className="w-full md:w-1/2">
-
             {/* Product Title */}
             <h4 className="text-gray-800 font-semibold text-3xl mb-2">
               {product.title}
@@ -132,10 +136,11 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart, setWish
             <div className="flex flex-col md:flex-row gap-6 mb-6">
               <button
                 disabled={product.quantity === 0}
-                className={`${product.quantity === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700"
-                  } text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 transition duration-200 text-lg`}
+                className={`${
+                  product.quantity === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-700"
+                } text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 transition duration-200 text-lg`}
                 onClick={() => handleAddToCart(product.id)}
               >
                 <FaShoppingCart className="mr-2" /> ADD TO CART
@@ -148,7 +153,6 @@ const ProductInfo = ({ product, quantity, handleQuantityChange, setCart, setWish
                 BUY NOW
               </button>
             </div>
-
 
             {/* Wishlist, Compare, Share */}
             <div className="mt-4 flex gap-6 text-gray-600">

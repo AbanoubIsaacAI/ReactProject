@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import productsList from "../../../product";
 
 function SearchDropdown() {
   const [allProducts] = useState(productsList);
   const [products, setProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   function handleSearch(e) {
     const value = e.target.value.toLowerCase();
     const filtered = allProducts.filter((product) =>
@@ -17,8 +17,8 @@ function SearchDropdown() {
   }
 
   const handleProductClick = (id) => {
-    setShowDropdown(false); 
-    navigate(`/product/${id}`);  
+    setShowDropdown(false);
+    navigate(`/product/${id}`);
   };
 
   return (
@@ -44,7 +44,7 @@ function SearchDropdown() {
                 <div
                   className="flex justify-between p-2 gap-3 cursor-pointer hover:bg-gray-500"
                   key={product.id}
-                  onClick={() => handleProductClick(product.id)} 
+                  onClick={() => handleProductClick(product.id)}
                 >
                   <img
                     src={product.image}
