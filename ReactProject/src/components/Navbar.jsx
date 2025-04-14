@@ -3,6 +3,7 @@ import Search from "./Search";
 import { useContext, useState } from "react";
 import { UserContext } from "../Pages/User";
 import logoImg from "../assets/logo1.png";
+import emptyCart from "../assets/11329060new.png";
 
 function Navbar({ cart, setCart, wishlist, setWishlist }) {
   const navigate = useNavigate();
@@ -254,7 +255,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                   <>
                     <span>Your cart is empty</span>
                     <img
-                      src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png"
+                      src={emptyCart}
                       alt="Empty cart"
                       className="w-50 relative left-[50%] translate-x-[-50%]"
                     />
