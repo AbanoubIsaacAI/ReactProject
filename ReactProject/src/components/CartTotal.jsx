@@ -57,7 +57,7 @@ const CartTotals = ({
             <Link
                 to={cart.length > 0 ? "/checkout" : "#"}
                 className={`btn btn-block mt-4 ${cart.length > 0
-                        ? 'bg-orange-500 hover:bg-orange-600'
+                        ? 'bg-[#E0045D] hover:bg-[#c10353]'
                         : 'bg-gray-400 cursor-not-allowed'
                     } text-white`}
                 onClick={e => cart.length === 0 && e.preventDefault()}

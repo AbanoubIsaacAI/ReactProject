@@ -193,7 +193,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                         <h6 className="font-semibold text-sm line-clamp-2">
                           {product.title}
                         </h6>
-                        <p className="text-orange-500 font-medium text-sm mt-1">
+                        <p className="text-[#E0045D] font-medium text-sm mt-1">
                           Price: {product.finalPrice}$
                         </p>
                         <div className="flex gap-2 mt-2">
@@ -325,7 +325,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                     </div>
                     <div>
                       {" "}
-                      <p className="text-orange-400">
+                      <p className="text-[#E0045D]">
                         Price: {product.finalPrice}$
                       </p>
                     </div>
@@ -353,7 +353,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                   <Link
                     to="/cart"
                     className="btn btn-block text-white"
-                    style={{ backgroundColor: "#FA8232" }}
+                    style={{ backgroundColor: "#E0045D" }}
                   >
                     View Cart
                   </Link>

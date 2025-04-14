@@ -53,7 +53,7 @@ const CouponForm = ({ onApplyCoupon, onRemoveCoupon, currentCode }) => {
                     />
                     <button
                         type="submit"
-                        className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white whitespace-nowrap"
+                        className="btn btn-sm bg-[#c10353] hover:bg-[#001937] text-white whitespace-nowrap"
                     >
                         Apply
                     </button>

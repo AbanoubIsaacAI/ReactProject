@@ -19,13 +19,13 @@ const CheckoutSuccess = ({ cart = [], setCart = () => { }, wishlist , setWishlis
                 <div className="flex gap-4 flex-wrap justify-center">
                     <button
                         onClick={() => navigate('/dashboard')}
-                        className="border border-orange-500 text-orange-500 px-5 py-2 rounded hover:bg-orange-50 transition"
+                        className="border border-[#E0045D] text-[#E0045D] px-5 py-2 rounded transition"
                     >
                         GO TO DASHBOARD
                     </button>
                     <button
                         onClick={() => navigate('/orders')}
-                        className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded transition"
+                        className="bg-[#E0045D] hover:bg-[#c10353] text-white px-5 py-2 rounded transition"
                     >
                         VIEW ORDER
                     </button>

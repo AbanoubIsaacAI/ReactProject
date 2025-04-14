@@ -35,7 +35,7 @@ const Login = ({
       if (userRole === 'admin') {
         navigate('/dashboard');
       } else {
-        
+
         navigate('/', {
           state: {
             products,
@@ -88,13 +88,15 @@ const Login = ({
           </div>
 
           {error && <p className="text-red-600 text-sm text-center">{error}</p>}
-
-          <button
+<Link to= "/home">
+<button
             type="submit"
             className="w-full py-2 rounded-md text-white font-semibold bg-gradient-to-r from-blue-500 to-pink-500 hover:opacity-90 transition-opacity"
           >
             LOGIN
           </button>
+</Link>
+
 
           <div className="text-center text-sm text-gray-700 mt-3">
             Don’t have an account?{" "}

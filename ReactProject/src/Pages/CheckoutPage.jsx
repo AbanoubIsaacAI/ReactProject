@@ -38,8 +38,8 @@ const Checkout = ({ cart, setCart ,wishlist, setWishlist }) => {
     };
 
     const subtotal = cart.reduce((sum, item) => sum + (item.finalPrice * item.counter), 0);
-    const tax = subtotal * 0.1; // 10% tax
-    const shipping = subtotal > 1000 ? 0 : 5.99; // Free shipping over $1000
+    const tax = subtotal * 0.1;
+    const shipping = subtotal > 1000 ? 0 : 5.99;
     const total = subtotal + tax + shipping;
 
     return (
@@ -48,7 +48,6 @@ const Checkout = ({ cart, setCart ,wishlist, setWishlist }) => {
             <div className="p-6 bg-gray-50 min-h-screen">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 
-                    {/* Billing Information */}
                     <div className="lg:col-span-2 space-y-6">
                         <h2 className="text-2xl font-semibold">Checkout</h2>
                         <form id="checkout-form" onSubmit={handleSubmit}>
@@ -139,12 +138,11 @@ const Checkout = ({ cart, setCart ,wishlist, setWishlist }) => {
                                 </div>
                             </div>
 
-                            {/* Payment Option */}
                             <div className="bg-white border rounded-lg p-6 shadow-sm">
                                 <h3 className="text-lg font-medium mb-4">Payment Method</h3>
                                 <div className="space-y-4">
                                     {['card', 'paypal', 'cash'].map((method) => (
-                                        <label key={method} className="flex items-start space-x-3 p-3 border rounded hover:border-orange-400">
+                                        <label key={method} className="flex items-start space-x-3 p-3 border rounded hover:border-[#E0045D]">
                                             <input
                                                 type="radio"
                                                 name="paymentMethod"
@@ -205,7 +203,6 @@ const Checkout = ({ cart, setCart ,wishlist, setWishlist }) => {
                         </form>
                     </div>
 
-                    {/* Order Summary */}
                     <div className="bg-white border rounded-lg p-6 shadow-sm h-fit sticky top-4">
                         <h3 className="text-lg font-medium mb-4">Order Summary</h3>
                         <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
@@ -240,7 +237,7 @@ const Checkout = ({ cart, setCart ,wishlist, setWishlist }) => {
                         <button
                             type="submit"
                             form="checkout-form"
-                            className="bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg mt-6 w-full text-lg font-medium"
+                            className="bg-[#E0045D] hover:bg-[#c10353] text-white py-3 px-6 rounded-lg mt-6 w-full text-lg font-medium"
                         >
                             Place Order - ${total.toFixed(2)}
                         </button>
