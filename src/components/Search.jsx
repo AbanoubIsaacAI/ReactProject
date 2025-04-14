@@ -1,5 +1,5 @@
 import { useState } from "react";
-import productsList from "../../../product";
+import productsList from "../../product";
 
 function SearchDropdown() {
   const [allProducts] = useState(productsList);
