@@ -1,10 +1,19 @@
-import { useState } from "react";
+
+////////////
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function LoginModal() {
-  const [isOpen, setIsOpen] = useState(true);
+function LoginModal({ setIsOpen }) {
+  const [isOpen, setLocalOpen] = useState(true);
 
-  const closeModal = () => setIsOpen(false);
+  useEffect(() => {
+    if (isOpen) window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [isOpen]);
+
+  const closeModal = () => {
+    setLocalOpen(false);
+    setIsOpen(false);
+  };
 
   if (!isOpen) return null;
 
