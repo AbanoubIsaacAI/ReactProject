@@ -11,6 +11,7 @@ import { useState } from "react";
 import Offers from "./Pages/Offers";
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -21,6 +22,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/"
+          element={
+            <LandingPage
+              cart={cart}
+              setCart={setCart}
+              wishlist={wishlist}
+              setWishlist={setWishlist}
+            />
+          }
+        />
+
         <Route
           path="/"
           element={
