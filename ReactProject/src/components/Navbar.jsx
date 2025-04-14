@@ -227,10 +227,10 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
             tabIndex={0}
             className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-110 shadow"
           >
-            <div className="card-body h-96 overflow-y-auto">
+            <div className="card-body h-96 overflow-y-auto text-center">
               {cart.length === 0 ? (
                 <>
-                  <span>Your cart is empty</span>
+                  <span className="font-bold text-2xl">Your cart is empty</span>
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png"
                     alt="Empty cart"
@@ -273,10 +273,21 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                           <span>Count: {product.counter}</span>
                           {product.counter === 1 ? (
                             <button
-                              className="btn bg-blue-400 rounded-full p-0 h-8 w-8 ml-1 text-white"
+                              className="btn bg-blue-400 hover:bg-red-500 rounded-full p-0 h-8 w-8 ml-1 text-white transition-colors duration-200"
                               onClick={() => handleRemoveFromCart(product.id)}
                             >
-                              ❌
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="h-4 w-4"
+                              >
+                                <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                              </svg>
                             </button>
                           ) : (
                             <button
@@ -295,6 +306,14 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
                         <p className="text-orange-400">
                           Price: {product.finalPrice}$
                         </p>
+                      </div>{" "}
+                      <div>
+                        <button
+                          className="cursor-pointer"
+                          onClick={() => handleRemoveFromCart(product.id)}
+                        >
+                          ❌
+                        </button>
                       </div>
                     </div>
                   ))}
