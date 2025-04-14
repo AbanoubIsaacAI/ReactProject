@@ -321,7 +321,7 @@ const productsList = [
     offer: "19% OFF",
     offerPrice: 282.69,
     finalPrice: 282.69,
-    quantity: 35,
+    quantity: 0,
     counter: 1,
     isMaxCount: false,
     rating: {
