@@ -2,6 +2,11 @@ import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
 function CartItem({ item, onQuantityChange, onRemove }) {
+    // Calculate available stock in the component
+    const availableInStock = item.originalQuantity !== undefined
+        ? item.originalQuantity - item.counter
+        : item.quantity - item.counter;
+
     return (
         <div className="flex items-center border-b py-4">
             <div className="w-24 h-24 mr-4">
@@ -16,11 +21,9 @@ function CartItem({ item, onQuantityChange, onRemove }) {
                 <p className="text-black-500 text-sm">
                     ${item.offerPrice ? item.offerPrice : item.price} (each)
                 </p>
-                {item.quantity !== undefined && (
-                    <p className="text-xs text-gray-500 mt-1">
-                        {item.quantity} available in stock
-                    </p>
-                )}
+                <p className="text-xs text-gray-500 mt-1">
+                    {!isNaN(availableInStock) ? availableInStock : item.quantity} available in stock
+                </p>
             </div>
             <div className="flex items-center gap-2">
                 <button
@@ -32,9 +35,9 @@ function CartItem({ item, onQuantityChange, onRemove }) {
                 </button>
                 <span className="px-2">{item.counter}</span>
                 <button
-                    className={`btn btn-sm btn-outline ${item.counter >= item.quantity ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`btn btn-sm btn-outline ${availableInStock <= 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                     onClick={() => onQuantityChange(item.id, 1)}
-                    disabled={item.counter >= item.quantity}
+                    disabled={availableInStock <= 0}
                 >
                     +
                 </button>

@@ -41,19 +41,16 @@ function CartPage({ cart, setCart ,wishlist, setWishlist  }) {
                     // Prevent decreasing below 1
                     if (newCounter < 1) return item;
 
-                    // Prevent increasing beyond available quantity
-                    if (newCounter > item.quantity) {
-                        alert(`Only ${item.quantity} items available`);
+                    // Prevent increasing beyond available stock
+                    const availableStock = item.originalQuantity - (item.counter + amount);
+                    if (availableStock < 0) {
+                        alert(`Only ${item.originalQuantity - item.counter} more items available`);
                         return item;
                     }
-
-                    // Update product quantity when counter changes
-                    const updatedQuantity = item.quantity - (newCounter - item.counter);
 
                     return {
                         ...item,
                         counter: newCounter,
-                        quantity: updatedQuantity,
                         finalPrice: (item.offerPrice || item.price) * newCounter,
                     };
                 }
