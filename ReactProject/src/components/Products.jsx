@@ -99,6 +99,7 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
 
       <div className="card-actions justify-end">
         <button
+          disabled={product.quantity === 0}
           className="btn w-full mt-2 text-white bg-[#E0045D] hover:bg-[#E0045D] transition-colors"
           onClick={(e) => {
             e.preventDefault();
