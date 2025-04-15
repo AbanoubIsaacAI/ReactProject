@@ -9,9 +9,8 @@ import {
 } from "recharts";
 
 const FinalPriceTrend = ({ products }) => {
-  // Format the data for chart use
   const chartData = products.map((item, index) => ({
-    name: item.title, // full title for tooltip
+    name: item.title,
     shortName: item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title,
     price: item.finalPrice,
   }));
@@ -29,7 +28,7 @@ const FinalPriceTrend = ({ products }) => {
                 dataKey="shortName"
                 angle={-45}
                 textAnchor="end"
-                interval={Math.floor(chartData.length / 10)} // Show 1 of every ~10 labels
+                interval={Math.floor(chartData.length / 10)}
                 height={100}
               />
               <YAxis />

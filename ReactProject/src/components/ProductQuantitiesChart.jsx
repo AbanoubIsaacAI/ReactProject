@@ -9,7 +9,6 @@ import {
   CartesianGrid,
 } from "recharts";
 
-// Utility: map product names to their quantities
 const getProductQuantities = (products) => {
   return products.map((product) => ({
     name: product.title || "Unnamed",

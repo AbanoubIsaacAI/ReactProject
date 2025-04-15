@@ -13,7 +13,6 @@ export const UserProvider = ({ children }) => {
     const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
     const hasAdmin = storedUsers.some((u) => u.username === "admin");
 
-    // Add admin only if it's not already present
     return hasAdmin ? storedUsers : [staticAdmin, ...storedUsers];
   });
 
@@ -23,7 +22,6 @@ export const UserProvider = ({ children }) => {
 
   const isLoggedIn = !!currentUser;
 
-  // Save to localStorage on user state change
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -31,7 +29,7 @@ export const UserProvider = ({ children }) => {
 
   const register = (username, password) => {
     if (users.some((user) => user.username === username)) {
-      return false; // User already exists
+      return false;
     }
     const newUser = { username, password, role: "user" };
     setUsers((prevUsers) => [...prevUsers, newUser]);

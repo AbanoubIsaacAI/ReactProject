@@ -41,7 +41,6 @@ const Reviews = ({
 
   return (
     <>
-      {/* Tab navigation */}
       <div className="mt-6 flex space-x-8 justify-center">
         <button
           className={`px-6 py-3 text-sm font-semibold cursor-pointer rounded-full transition-all duration-300 transform ${
@@ -65,7 +64,6 @@ const Reviews = ({
         </button>
       </div>
 
-      {/* Description Tab */}
       {activeTab === "description" && (
         <div className="mt-8 p-6 bg-gray-50 rounded-lg shadow-xl">
           <h4 className="font-bold text-2xl text-gray-800 mb-4">Description</h4>
@@ -75,7 +73,6 @@ const Reviews = ({
         </div>
       )}
 
-      {/* Reviews Tab */}
       {activeTab === "reviews" && (
         <div className="mt-8 p-6 bg-gray-50 rounded-lg shadow-xl">
           <h4 className="font-bold text-2xl text-gray-800 mb-6">Reviews</h4>
@@ -96,7 +93,6 @@ const Reviews = ({
             </>
           ) : (
             <>
-              {/* Display Reviews */}
               {product?.reviews && Array.isArray(product.reviews) && product.reviews.length > 0 ? (
                 product.reviews.map((review, index) => (
                   <div key={index} className="mb-6 pb-6 border-b border-gray-200">
@@ -118,7 +114,6 @@ const Reviews = ({
                       </div>
                     ) : null}
 
-                    {/* Edit button */}
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-gray-600 text-sm">
                         {editIndex !== index && " "}
@@ -167,7 +162,6 @@ const Reviews = ({
                 </div>
               )}
 
-              {/* Review Form */}
               <form onSubmit={handleReviewSubmit}>
                 {!ratingSubmitted && (
                   <div className="mb-6">
@@ -190,7 +184,6 @@ const Reviews = ({
                   </div>
                 )}
 
-                {/* Comment box */}
                 {!commentSubmitted && (
                   <div className="mb-6">
                     <label className="block text-sm font-semibold text-gray-700 mb-3">

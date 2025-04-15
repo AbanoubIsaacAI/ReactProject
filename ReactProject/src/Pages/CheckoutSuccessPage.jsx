@@ -24,14 +24,8 @@ const CheckoutSuccess = ({ cart = [], setCart = () => { }, wishlist , setWishlis
                         GO TO DASHBOARD
                     </button>
                     <button
-                        onClick={() => navigate('/orders')}
-                        className="bg-[#E0045D] hover:bg-[#c10353] text-white px-5 py-2 rounded transition"
-                    >
-                        VIEW ORDER
-                    </button>
-                    <button
                         onClick={() => navigate('/shop')}
-                        className="border border-gray-300 text-gray-700 px-5 py-2 rounded hover:bg-gray-50 transition"
+                        className="bg-[#E0045D] hover:bg-[#c10353] text-white px-5 py-2 rounded transition"
                     >
                         CONTINUE SHOPPING
                     </button>

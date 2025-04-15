@@ -25,7 +25,7 @@ const ProductInfo = ({
 }) => {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const { isLoggedIn } = useContext(UserContext); // 👈 this will always be in sync
+  const { isLoggedIn } = useContext(UserContext);
 
   const requireLogin = (action) => {
     if (!isLoggedIn) {
@@ -74,7 +74,6 @@ const ProductInfo = ({
       )}
       <div className="flex-grow flex justify-center items-center px-6 shadow-2xl">
         <div className="max-w-6xl w-full rounded-lg p-8 flex flex-col md:flex-row gap-8">
-          {/* Image Section */}
           <div className="flex justify-center items-center w-full md:w-1/2">
             <img
               src={product.image || "/default-placeholder.png"}
@@ -83,7 +82,6 @@ const ProductInfo = ({
             />
           </div>
 
-          {/* Info Section */}
           <div className="w-full md:w-1/2">
             <h4 className="text-gray-800 font-semibold text-3xl mb-2">
               {product.title}

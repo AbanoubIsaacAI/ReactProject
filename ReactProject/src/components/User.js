@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState([]); // Store registered users
+  const [users, setUsers] = useState([]);
 
   const addUser = (user) => {
     setUsers((prevUsers) => [...prevUsers, user]);

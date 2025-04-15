@@ -36,7 +36,6 @@ const LandingPage = ({ cart, setCart, wishlist, setWishlist }) => {
                 setWishlist={setWishlist}
             />
             <div className="font-sans text-[#0A1F44]">
-                {/* Hero Section */}
                 <section className="bg-[#011B3A] text-white px-6 py-12 md:py-20">
                     <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                         <motion.div
@@ -101,8 +100,7 @@ const LandingPage = ({ cart, setCart, wishlist, setWishlist }) => {
                         </motion.div>
                     </div>
                 </section>
-
-                {/* Features Section */}
+}
                 <section className="bg-white py-16 px-6">
                     <div className="max-w-6xl mx-auto text-center">
                         <motion.h2
@@ -170,7 +168,6 @@ const LandingPage = ({ cart, setCart, wishlist, setWishlist }) => {
                             </motion.div>
                         </div>
 
-                        {/* 🛍️ Button below cards */}
                         <div className="col-span-2 flex justify-center mt-16">
                             <Link to="/shop">
                                 <motion.button

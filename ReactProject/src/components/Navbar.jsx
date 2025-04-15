@@ -95,7 +95,6 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
           <Search />
         </div>
 
-        {/* Wishlist Dropdown */}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -222,7 +221,6 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
           </div>
         </div>
 
-        {/* Cart Dropdown */}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -364,7 +362,6 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
           </div>
         </div>
 
-        {/* Profile Dropdown */}
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -417,7 +414,6 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
           </ul>
         </div>
 
-        {/* Error Message */}
         {errorMessage && (
           <div className="error-message text-red-500 text-sm">
             {errorMessage}

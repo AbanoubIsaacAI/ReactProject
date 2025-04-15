@@ -66,7 +66,6 @@ const ProductDetails = ({ cart, setCart, wishlist, setWishlist }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Product Info Section */}
               <div className="">
                 <ProductInfo
                   product={product}
@@ -79,7 +78,6 @@ const ProductDetails = ({ cart, setCart, wishlist, setWishlist }) => {
               </div>
             </motion.div>
 
-            {/* Reviews Section */}
             <div className="mt-8">
               <Reviews
                 product={product}
@@ -95,7 +93,6 @@ const ProductDetails = ({ cart, setCart, wishlist, setWishlist }) => {
               />
             </div>
 
-            {/* Related Products Section */}
             <div className="mt-12">
               <RelatedProducts relatedProducts={relatedProducts} />
             </div>

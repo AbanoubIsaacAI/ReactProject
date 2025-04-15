@@ -2,7 +2,6 @@ import React from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 const RealDataBarChart = ({ products }) => {
-  // 🧠 Transform product data to get quantity per product
   const productQuantities = products.map((product) => ({
     name: product.name,
     quantity: product.quantity,

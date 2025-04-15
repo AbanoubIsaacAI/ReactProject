@@ -2,7 +2,6 @@ import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
 function CartItem({ item, onQuantityChange, onRemove }) {
-    // Calculate available stock in the component
     const availableInStock = item.originalQuantity !== undefined
         ? item.originalQuantity - item.counter
         : item.quantity - item.counter;

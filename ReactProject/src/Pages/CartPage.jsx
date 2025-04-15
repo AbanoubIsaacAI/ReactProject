@@ -38,10 +38,8 @@ function CartPage({ cart, setCart ,wishlist, setWishlist  }) {
                 if (item.id === id) {
                     const newCounter = item.counter + amount;
 
-                    // Prevent decreasing below 1
                     if (newCounter < 1) return item;
 
-                    // Prevent increasing beyond available stock
                     const availableStock = item.originalQuantity - (item.counter + amount);
                     if (availableStock < 0) {
                         alert(`Only ${item.originalQuantity - item.counter} more items available`);

@@ -9,7 +9,6 @@ import {
   CartesianGrid,
 } from "recharts";
 
-// Utility to group and count products by category
 const getCategoryCounts = (products) => {
   const categoryMap = {};
 

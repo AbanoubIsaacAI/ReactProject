@@ -30,7 +30,6 @@ const Login = ({
     if (success) {
       console.log("Login successful!");
 
-      // Redirect based on role
       const userRole = username === "admin" ? "admin" : "user";
       if (userRole === "admin") {
         navigate("/dashboard");

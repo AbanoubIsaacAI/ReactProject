@@ -22,7 +22,6 @@ const RelatedProducts = ({ relatedProducts }) => (
             transition={{ duration: 0.3 }}
             className="flex flex-col h-full bg-white rounded-lg shadow-lg overflow-hidden"
           >
-            {/* Image Section */}
             <div
               className="flex justify-center items-center p-4"
               style={{ height: "220px" }}
@@ -34,7 +33,6 @@ const RelatedProducts = ({ relatedProducts }) => (
               />
             </div>
 
-            {/* Text Section */}
             <div className="flex flex-col justify-between p-4">
               <h6 className="text-sm font-semibold text-gray-800 truncate">
                 {related.title}

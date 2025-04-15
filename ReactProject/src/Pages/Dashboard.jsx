@@ -1,17 +1,14 @@
-// src/pages/DashboardPage.jsx
 import React from "react";
 import RealDataBarChart from "../components/RealDataBarChart.jsx";
 import CategoryCountChart from "../components/CategoryCountChart.jsx";
 import ProductQuantitiesChart from "../components/ProductQuantitiesChart.jsx";
-
 import ChartsDashboard from "../components/ChartsDashboard.jsx";
 import AdminCharts from "../components/AdminCharts.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import productsList from "../../../product"; // adjust path if needed
+import productsList from "../../../product";
 
 const DashboardPage = ({ cart, setCart, wishlist, setWishlist }) => {
-  // Example data - replace with real calculations if needed
   const categoryCounts = [
     { category: "Power Banks", count: 18 },
     { category: "Chargers", count: 10 },
@@ -50,14 +47,12 @@ const DashboardPage = ({ cart, setCart, wishlist, setWishlist }) => {
       <div className="p-6 bg-gray-100 min-h-screen">
         <h1 className="text-3xl font-bold mb-8 text-center">Admin Dashboard</h1>
 
-        {/* Combined Charts: Bar, Radial, Line */}
         <AdminCharts
           categoryCounts={categoryCounts}
           quantityData={quantityData}
           products={productsList}
         />
 
-        {/* Additional Charts (if any) */}
         <div className="mt-12">
           <ChartsDashboard products={productsList} />
         </div>

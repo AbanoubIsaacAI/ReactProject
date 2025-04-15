@@ -1,4 +1,3 @@
-// src/components/AdminCharts.jsx
 import React from "react";
 import {
   BarChart,
@@ -11,7 +10,6 @@ import {
 } from "recharts";
 
 const AdminCharts = ({ categoryCounts, quantityData, products }) => {
-  // 📊 NEW: Calculate total stock by category
   const totalStockPerCategory = Object.values(
     products.reduce((acc, product) => {
       if (!acc[product.category]) {
@@ -24,7 +22,6 @@ const AdminCharts = ({ categoryCounts, quantityData, products }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* Chart 1: Category Count */}
       <div className="bg-white shadow-md rounded-2xl p-4">
         <h2 className="text-xl font-semibold mb-4">Product Categories Count</h2>
         <ResponsiveContainer width="100%" height={300}>
@@ -38,7 +35,6 @@ const AdminCharts = ({ categoryCounts, quantityData, products }) => {
         </ResponsiveContainer>
       </div>
 
-      {/* Chart 2: Quantity per Product */}
       <div className="bg-white shadow-md rounded-2xl p-4">
         <h2 className="text-xl font-semibold mb-4">Product Quantities</h2>
         <ResponsiveContainer width="100%" height={300}>
@@ -52,7 +48,6 @@ const AdminCharts = ({ categoryCounts, quantityData, products }) => {
         </ResponsiveContainer>
       </div>
 
-      {/* ✅ NEW Chart 3: Total Stock per Category */}
       <div className="bg-white shadow-md rounded-2xl p-4 col-span-1 md:col-span-2">
         <h2 className="text-xl font-semibold mb-4">Total Stock by Category</h2>
         <ResponsiveContainer width="100%" height={350}>
