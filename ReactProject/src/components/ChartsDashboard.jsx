@@ -9,6 +9,10 @@ import {
 } from "recharts";
 
 const FinalPriceTrend = ({ products }) => {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   const chartData = products.map((item, index) => ({
     name: item.title,
     shortName: item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title,

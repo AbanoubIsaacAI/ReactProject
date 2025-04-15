@@ -1,4 +1,4 @@
-const productsList = [
+  const productsList = [
   {
     id: 1,
     title: "Dell Inspiron 15 Laptop",
