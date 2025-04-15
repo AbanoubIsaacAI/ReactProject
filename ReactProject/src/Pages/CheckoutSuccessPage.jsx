@@ -17,12 +17,12 @@ const CheckoutSuccess = ({ cart = [], setCart = () => { }, wishlist , setWishlis
                     Thank you for your purchase! We've received your order and it's being processed.
                 </p>
                 <div className="flex gap-4 flex-wrap justify-center">
-                    <button
+                    {/* <button
                         onClick={() => navigate('/dashboard')}
                         className="border border-[#E0045D] text-[#E0045D] px-5 py-2 rounded transition"
                     >
                         GO TO DASHBOARD
-                    </button>
+                    </button> */}
                     <button
                         onClick={() => navigate('/shop')}
                         className="bg-[#E0045D] hover:bg-[#c10353] text-white px-5 py-2 rounded transition"

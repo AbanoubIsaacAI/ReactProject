@@ -33,14 +33,12 @@ const DashboardPage = ({ cart, setCart, wishlist, setWishlist }) => {
       <div className="p-6 bg-gray-100 min-h-screen">
         <h1 className="text-3xl font-bold mb-8 text-center">Admin Dashboard</h1>
 
-<<<<<<< Updated upstream
-        <AdminCharts
+        {/* <AdminCharts
           categoryCounts={categoryCounts}
           quantityData={quantityData}
           products={productsList}
-        />
+        /> */}
 
-=======
         {/* Product Quantities */}
         <ProductQuantitiesChart products={productsList} />
 
@@ -50,7 +48,6 @@ const DashboardPage = ({ cart, setCart, wishlist, setWishlist }) => {
         </section>
 
         {/* Final Price Trend */}
->>>>>>> Stashed changes
         <div className="mt-12">
           <ChartsDashboard products={productsList} />
         </div>
