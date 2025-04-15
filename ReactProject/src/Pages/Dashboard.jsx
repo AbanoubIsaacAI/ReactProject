@@ -1,10 +1,29 @@
-import BarChart from "../Components/BarChart.jsx";
-import PieChart from "../Components/PieChart.jsx";
-import LineChart from "../components/LineChart.jsx";
-import DoughnutChart from "../components/DoughnutChart.jsx";
+// src/pages/DashboardPage.jsx
+import React from "react";
+import RealDataBarChart from "../components/RealDataBarChart.jsx";
+import CategoryCountChart from "../components/CategoryCountChart.jsx";
+import ProductQuantitiesChart from "../components/ProductQuantitiesChart.jsx";
+
+import ChartsDashboard from "../components/ChartsDashboard.jsx";
+import AdminCharts from "../components/AdminCharts.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-function Dashboard({ cart, setCart, wishlist, setWishlist }) {
+import productsList from "../../../product"; // adjust path if needed
+
+const DashboardPage = ({ cart, setCart, wishlist, setWishlist }) => {
+  // Example data - replace with real calculations if needed
+  const categoryCounts = [
+    { category: "Power Banks", count: 18 },
+    { category: "Chargers", count: 10 },
+    { category: "Cables", count: 7 },
+  ];
+
+  const quantityData = [
+    { name: "Power Bank A", quantity: 30 },
+    { name: "Cable X", quantity: 15 },
+    { name: "Charger Z", quantity: 25 },
+  ];
+
   return (
     <>
       <Navbar
@@ -12,29 +31,41 @@ function Dashboard({ cart, setCart, wishlist, setWishlist }) {
         setCart={setCart}
         wishlist={wishlist}
         setWishlist={setWishlist}
-      ></Navbar>
+      />
+      <ProductQuantitiesChart products={productsList} />
+
+
+      <section className="mt-12">
+  <CategoryCountChart products={productsList} />
+</section>
+
+
+
+      <section className="mt-12">
+  <h2 className="text-2xl font-semibold mb-6 text-center">Real Data Chart</h2>
+  <RealDataBarChart products={productsList} />
+</section>
+
+
       <div className="p-6 bg-gray-100 min-h-screen">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          Dashboard Overview
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white shadow-lg rounded-2xl p-4">
-            <BarChart />
-          </div>
-          <div className="bg-white shadow-lg rounded-2xl p-4">
-            <PieChart />
-          </div>
-          <div className="bg-white shadow-lg rounded-2xl p-4">
-            <LineChart />
-          </div>
-          <div className="bg-white shadow-lg rounded-2xl p-4">
-            <DoughnutChart />
-          </div>
+        <h1 className="text-3xl font-bold mb-8 text-center">Admin Dashboard</h1>
+
+        {/* Combined Charts: Bar, Radial, Line */}
+        <AdminCharts
+          categoryCounts={categoryCounts}
+          quantityData={quantityData}
+          products={productsList}
+        />
+
+        {/* Additional Charts (if any) */}
+        <div className="mt-12">
+          <ChartsDashboard products={productsList} />
         </div>
       </div>
-      <Footer></Footer>
+
+      <Footer />
     </>
   );
-}
+};
 
-export default Dashboard;
+export default DashboardPage;
