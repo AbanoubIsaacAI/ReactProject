@@ -10,7 +10,6 @@ import Footer from "../components/Footer.jsx";
 function CartPage({ cart, setCart ,wishlist, setWishlist  }) {
     const [discount, setDiscount] = useState(0);
     const [discountCode, setDiscountCode] = useState('');
-
     const handleApplyCoupon = (code) => {
         const validCoupons = {
             'SAVE10': 10,
@@ -35,15 +34,31 @@ function CartPage({ cart, setCart ,wishlist, setWishlist  }) {
 
     const handleQuantityChange = (id, amount) => {
         setCart((prev) =>
-            prev.map((item) =>
-                item.id === id
-                    ? {
-                        ...item,
-                        counter: Math.max(1, item.counter + amount),
-                        finalPrice: (item.offerPrice || item.price) * (item.counter + amount),
+            prev.map((item) => {
+                if (item.id === id) {
+                    const newCounter = item.counter + amount;
+
+                    // Prevent decreasing below 1
+                    if (newCounter < 1) return item;
+
+                    // Prevent increasing beyond available quantity
+                    if (newCounter > item.quantity) {
+                        alert(`Only ${item.quantity} items available`);
+                        return item;
                     }
-                    : item
-            )
+
+                    // Update product quantity when counter changes
+                    const updatedQuantity = item.quantity - (newCounter - item.counter);
+
+                    return {
+                        ...item,
+                        counter: newCounter,
+                        quantity: updatedQuantity,
+                        finalPrice: (item.offerPrice || item.price) * newCounter,
+                    };
+                }
+                return item;
+            })
         );
     };
 
