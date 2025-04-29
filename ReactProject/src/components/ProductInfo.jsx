@@ -1,4 +1,3 @@
-
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Pages/User";
@@ -34,7 +33,6 @@ const ProductInfo = ({
       action();
     }
   };
-
 
   const handleAddToCart = (id) => {
     setCart((prevCart) =>
@@ -155,7 +153,12 @@ const ProductInfo = ({
               </button>
 
               <button
-                className="bg-yellow-600 text-white font-semibold py-2 px-12 rounded-md w-full md:w-1/2 hover:bg-yellow-500 transition duration-200 text-lg"
+                disabled={product.quantity === 0}
+                className={`${
+                  product.quantity === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-yellow-600 hover:bg-yellow-500"
+                } text-white font-semibold py-2 px-12 rounded-md flex items-center justify-center w-full md:w-1/2 transition duration-200 text-lg`}
                 onClick={(e) => {
                   e.preventDefault();
                   requireLogin(() => handleBuyNow(product.id));

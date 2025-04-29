@@ -20,19 +20,19 @@ function Offers({
         wishlist={wishlist}
         setWishlist={setWishlist}
       />
-
-      <Products
-        cart={cart}
-        setCart={setCart}
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        setAllProducts={setAllProducts}
-        isOffer={true}
-        wishlist={wishlist}
-        setWishlist={setWishlist}
-      />
-
+      <div className="m-15">
+        <Products
+          cart={cart}
+          setCart={setCart}
+          products={products}
+          setProducts={setProducts}
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
+          isOffer={true}
+          wishlist={wishlist}
+          setWishlist={setWishlist}
+        />
+      </div>
       <Footer />
     </>
   );

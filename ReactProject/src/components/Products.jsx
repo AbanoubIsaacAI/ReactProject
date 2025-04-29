@@ -3,6 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Pages/User";
 import LoginModal from "./LoginModal";
+import { CiHeart } from "react-icons/ci";
 
 function Products({ setCart, products, displayedProductsCount, isOffer }) {
   const [seeMore, setSeeMore] = useState({});
@@ -53,6 +54,11 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
                 {product.offer}
               </div>
             )}
+            {
+              <button className="p-1 absolute top-2 right-2 bg-white rounded-2xl">
+                <CiHeart />
+              </button>
+            }
           </figure>
 
           <div className="card-body p-4">

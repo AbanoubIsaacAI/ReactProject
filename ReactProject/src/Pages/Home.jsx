@@ -24,7 +24,7 @@ function Home({
         setWishlist={setWishlist}
       />
       <Slider />
-      <div className="flex flex-wrap m-20 gap-4 justify-center">
+      <div className="flex flex-wrap m-10 gap-4 justify-center">
         <div className=" md:basis-[45%] w-full">
           <OffersAndShop></OffersAndShop>
         </div>
@@ -32,17 +32,19 @@ function Home({
           <GoShopping></GoShopping>
         </div>
       </div>
-      <Products
-        cart={cart}
-        setCart={setCart}
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        setAllProducts={setAllProducts}
-        displayedProductsCount={20}
-        wishlist={wishlist}
-        setWishlist={setWishlist}
-      />
+      <div className="m-15">
+        <Products
+          cart={cart}
+          setCart={setCart}
+          products={products}
+          setProducts={setProducts}
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
+          displayedProductsCount={20}
+          wishlist={wishlist}
+          setWishlist={setWishlist}
+        />
+      </div>
 
       <Footer />
     </>

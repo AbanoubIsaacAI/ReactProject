@@ -2,7 +2,7 @@ function Slider() {
   return (
     <div className="flex justify-center">
       <div
-        className="carousel w-full m-8"
+        className="carousel w-full m-16"
         style={{ marginTop: "10px", borderRadius: "10px" }}
       >
         <div id="slide1" className="carousel-item relative w-full">
