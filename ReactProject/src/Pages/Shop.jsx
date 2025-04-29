@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import SideFilter from "../components/SideFilter";
 import Slider from "../components/Slider";
-import { useState } from "react";
 function Shop({
   products,
   setProducts,
@@ -36,6 +35,8 @@ function Shop({
           setProducts={setProducts}
           allProducts={allProducts}
           setAllProducts={setAllProducts}
+          wishlist={wishlist}
+          setWishlist={setWishlist}
           displayedProductsCount={100}
         />
       </div>

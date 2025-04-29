@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../Pages/User";
 import LoginModal from "./LoginModal";
 import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 
-function Products({ setCart, products, displayedProductsCount, isOffer }) {
+function Products({
+  setCart,
+  products,
+  displayedProductsCount,
+  isOffer,
+  wishlist,
+  setWishlist,
+}) {
   const [seeMore, setSeeMore] = useState({});
   const { isLoggedIn } = useContext(UserContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -16,6 +24,15 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
       [id]: !prev[id],
     }));
   }
+  const handleAddToWishlist = (id) => {
+    const product = products.find((p) => p.id === id);
+    if (!product) return;
+    setWishlist((prevWishlist) =>
+      prevWishlist.some((item) => item.id === id)
+        ? prevWishlist
+        : [...prevWishlist, product]
+    );
+  };
 
   function handleBuy(id) {
     const productToAdd = products.find((product) => product.id === id);
@@ -54,11 +71,22 @@ function Products({ setCart, products, displayedProductsCount, isOffer }) {
                 {product.offer}
               </div>
             )}
-            {
-              <button className="p-1 absolute top-2 right-2 bg-white rounded-2xl">
+
+            {wishlist.some((item) => item.id === product.id) ? (
+              <button
+                className="p-1 absolute top-2 right-2 bg-white rounded-2xl text-red-500"
+                onClick={() => handleAddToWishlist(product.id)}
+              >
+                <FaHeart />
+              </button>
+            ) : (
+              <button
+                className="p-1 absolute top-2 right-2 bg-white rounded-2xl text-gray-500"
+                onClick={() => handleAddToWishlist(product.id)}
+              >
                 <CiHeart />
               </button>
-            }
+            )}
           </figure>
 
           <div className="card-body p-4">

@@ -40,7 +40,6 @@ const ProductInfo = ({
         ? prevCart
         : [...prevCart, { ...product, counter: quantity }]
     );
-    navigate("/cart");
   };
 
   const handleBuyNow = (id) => {

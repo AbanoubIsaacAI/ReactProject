@@ -85,7 +85,7 @@ function Navbar({ cart, setCart, wishlist, setWishlist }) {
   return (
     <div className="navbar shadow-sm sticky top-0 z-50 bg-[#001937] px-4 md:px-16 ">
       <div className="flex flex-1 items-center justify-between">
-        <Link to="/" className="btn btn-ghost p-0">
+        <Link to="/" className=" p-0">
           <img src={logoImg} alt="Logo" className="h-10 md:h-12" />
         </Link>
 
