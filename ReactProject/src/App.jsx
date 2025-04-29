@@ -12,128 +12,137 @@ import Offers from "./Pages/Offers";
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import LandingPage from "./Pages/LandingPage";
+import { UserProvider } from "./Pages/User";
+import { useContext } from "react";
+import { UserContext } from "./Pages/User";
 
 function App() {
   const [cart, setCart] = useState([]);
   const [allProducts, setAllProducts] = useState(productsList);
   const [products, setProducts] = useState(productsList);
   const [wishlist, setWishlist] = useState([]);
+  const { isLoggedIn, currentUser } = useContext(UserContext);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <LandingPage
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
 
-        <Route
-          path="/home"
-          element={
-            <Home
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
+          <Route
+            path="/home"
+            element={
+              <Home
+                products={products}
+                setProducts={setProducts}
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
+          <Route
+            path="/offers"
+            element={
+              <Offers
+                products={products}
+                setProducts={setProducts}
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <ProductDetails
+                products={products}
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <Shop
+                products={products}
+                setProducts={setProducts}
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
+          {currentUser?.role === "admin" && (
+            <Route
+              path="/dashboard"
+              element={
+                <Dashboard
+                  cart={cart}
+                  setCart={setCart}
+                  wishlist={wishlist}
+                  setWishlist={setWishlist}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/offers"
-          element={
-            <Offers
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
-        <Route
-          path="/product/:id"
-          element={
-            <ProductDetails
-              products={products}
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <Shop
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <Dashboard
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <CartPage cart={cart} setCart={setCart} wishlist={wishlist} />
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <Checkout
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
-        <Route
-          path="/checkout/success"
-          element={
-            <CheckoutSuccess
-              cart={cart}
-              setCart={setCart}
-              wishlist={wishlist}
-              setWishlist={setWishlist}
-            />
-          }
-        />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+          )}
+
+          <Route
+            path="/cart"
+            element={
+              <CartPage cart={cart} setCart={setCart} wishlist={wishlist} />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
+          <Route
+            path="/checkout/success"
+            element={
+              <CheckoutSuccess
+                cart={cart}
+                setCart={setCart}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+              />
+            }
+          />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 

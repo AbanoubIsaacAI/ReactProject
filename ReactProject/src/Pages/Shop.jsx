@@ -10,15 +10,19 @@ function Shop({
   allProducts,
   setAllProducts,
   cart,
-  setCart, 
+  setCart,
   wishlist,
-  setWishlist
+  setWishlist,
 }) {
-  
   return (
     <>
-      <Navbar cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist}/>
-      <div className="flex flex-col sm:flex-row">
+      <Navbar
+        cart={cart}
+        setCart={setCart}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
+      />
+      <div className="flex flex-col sm:flex-row mx-8">
         <SideFilter
           products={products}
           setProducts={setProducts}
