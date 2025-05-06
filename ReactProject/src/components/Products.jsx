@@ -24,7 +24,8 @@ function Products({
       [id]: !prev[id],
     }));
   }
-  const handleAddToWishlist = (id) => {
+  const handleAddToWishlist = (id, e) => {
+    e.preventDefault();
     const product = products.find((p) => p.id === id);
     if (!product) return;
     setWishlist((prevWishlist) =>
@@ -82,7 +83,7 @@ function Products({
             ) : (
               <button
                 className="p-1 absolute top-2 right-2 bg-white rounded-2xl text-gray-500"
-                onClick={() => handleAddToWishlist(product.id)}
+                onClick={(e) => handleAddToWishlist(product.id, e)}
               >
                 <CiHeart />
               </button>
